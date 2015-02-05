@@ -11,7 +11,7 @@ var webpackConfig = require('./webpack.config.js')[environment];
 var port = $.util.env.port || 1337;
 var src = './src/';
 var dist = './dist/';
-var bower = './bower_components' 
+var bower = './bower_components/' 
 
 // https://github.com/ai/autoprefixer
 var autoprefixerBrowsers = [                 
@@ -50,10 +50,10 @@ gulp.task('html', function() {
 gulp.task('styles', function () {
 	return sass(src +'scss/main.scss', {
 			loadPath: [
-				bower + '/fontawesome/scss/',
-				bower + '/normalize.sass/',
-				bower + '/bourbon/app/assets/stylesheets/',
-				bower + '/neat/app/assets/stylesheets/',
+				bower + 'fontawesome/scss/',
+				bower + 'normalize.sass/',
+				bower + 'bourbon/app/assets/stylesheets/',
+				bower + 'neat/app/assets/stylesheets/',
 			],
 			style: 'compressed'
 		}) 
@@ -88,12 +88,23 @@ gulp.task('images', function(cb) {
 
 // A task to copy icons, really ? yes.
 gulp.task('icons', function() { 
-	return gulp.src(bower + '/fontawesome/fonts/**.*') 
+	return gulp.src(bower + 'fontawesome/fonts/**.*') 
 		.pipe(gulp.dest(dist + 'fonts/')); 
+});
+
+gulp.task('init', function() { 
+	return gulp.src([
+			src + 'favicon.ico',
+			src + 'apple-touch-icon.png',
+			src + 'humans.txt',
+			src + 'robots.txt'
+		]) 
+		.pipe(gulp.dest(dist)); 
 });
 
 // watch sass, html and js file changes
 gulp.task('watch', function() {
+	gulp.watch('./gulpfile.js', []);
 	gulp.watch(src + 'index.html', ['html']);
 	gulp.watch(src + 'scss/**/**/*.scss', ['styles']);
 	gulp.watch(src + 'js/**/*.js', ['scripts']);
@@ -115,7 +126,8 @@ gulp.task('build', ['clean'], function(){
 		'html',
 		'styles',
 		'scripts',
-		'icons'
+		'icons',
+		'init'
 	]);
 });
 

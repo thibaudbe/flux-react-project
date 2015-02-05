@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Thibaud B -- design/developement -- @thibaudbe
+
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Flux, Reactjs
+    Bower, Gulp
+    Sass, Jsx
