@@ -5,6 +5,7 @@ var AppActions     = require('../../actions/AppActions');
 var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
+var NotFound       = require('../pages/NotFound.jsx');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
@@ -63,7 +64,7 @@ var List = React.createClass({
 	render: function() {
 		var text = this.state.liked ? 'like' : 'hate';
 		var data = this.state.data;
-		var id = this.props.id;
+		var id = this.state.id;
 
 		var loading = data.length === 0 ? <Loading /> : '';
 

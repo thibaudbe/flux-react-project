@@ -11,6 +11,6 @@ var Router        = require('react-router');
 Router.run(routes, function(Handler, state) {
   React.render(
     <Handler params={state.params}/>, 
-    document.getElementById('view')
+    document.body
   );
 });

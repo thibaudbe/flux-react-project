@@ -5,6 +5,7 @@ var AppActions     = require('../../actions/AppActions');
 var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
+var NotFound       = require('../pages/NotFound.jsx');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');

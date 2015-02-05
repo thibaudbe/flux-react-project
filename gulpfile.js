@@ -51,9 +51,7 @@ gulp.task('styles', function () {
 	return sass(src +'scss/main.scss', {
 			loadPath: [
 				bower + 'fontawesome/scss/',
-				bower + 'normalize.sass/',
-				bower + 'bourbon/app/assets/stylesheets/',
-				bower + 'neat/app/assets/stylesheets/',
+				bower + 'normalize.sass/'
 			],
 			style: 'compressed'
 		}) 
