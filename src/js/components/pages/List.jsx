@@ -1,10 +1,9 @@
 'use strict';
 
 var React          = require('react');
-var AppActions     = require('../actions/AppActions');
-var AppStore       = require('../stores/AppStore');
-var StoreWatchMixin = require('../mixins/StoreWatchMixin');
-var NotFound 			 = require('../components/NotFound.jsx');
+var AppActions     = require('../../actions/AppActions');
+var AppStore       = require('../../stores/AppStore');
+var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
@@ -44,14 +43,14 @@ var List = React.createClass({
 	renderShots: function() {
 		if (typeof(this.state.data.shots) !== 'undefined') {
 			var shots = this.state.data.shots;
-			var shotsNode = shots.map(function(item, i) {
+			var shotsNode = shots.map(function(shot, i) {
 				return (
 					<li key={i}>
-						<Link to="item" params={{id: item.id}}>
-							{item.title} <img width="27" height="20" src={item.image_url}/>
+						<Link to="shot" params={{id: shot.id}}>
+							{shot.title} <img width="27" height="20" src={shot.image_url}/>
 						</Link>
-						<Link to="user" params={{id: item.player.username}}>
-							{item.player.name}
+						<Link to="player" params={{id: shot.player.username}}>
+							{shot.player.name}
 						</Link>
 					</li>
 				);
@@ -75,18 +74,17 @@ var List = React.createClass({
 			);
 		}
 
+		// <p onClick={this.handleClick}>I {text}</p>
+
 		return (
-			<DocumentTitle title={id || 'Untitled'}>
-				<div>
-					<p onClick={this.handleClick}>I {text}</p>
-					<hr/>
-					<p>You are on the {id} list</p>
-					<hr/>
-					<ul>
-						{this.renderShots()}
-					</ul>
-				</div>
-			</DocumentTitle>
+			<div>
+				<hr/>
+				<p>You are on the {id} list</p>
+				<hr/>
+				<ul>
+					{this.renderShots()}
+				</ul>
+			</div>
 		);
 	},
 

@@ -12,14 +12,14 @@ var AppActions = {
 		API.getList(id);
 	},
 
-	getItem: function(id) {
+	getShot: function(id) {
 		console.log('=> Actions => API :', id);
-		API.getItem(id);
+		API.getShot(id);
 	},
 
-	getUser: function(id) {
+	getPlayer: function(id) {
 		console.log('=> Actions => API :', id);
-		API.getUser(id);
+		API.getPlayer(id);
 	},
 
 };

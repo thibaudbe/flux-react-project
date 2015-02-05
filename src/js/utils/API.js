@@ -52,13 +52,13 @@ var API = {
 		get(url, key, id);
 	},
 
-	getItem: function(id) {
+	getShot: function(id) {
 		var url = makeUrl('/shots/'+ id);
 		var key = ActionTypes.LOAD_DATA;
 		get(url, key, id);
 	},
 
-	getUser: function(id) {
+	getPlayer: function(id) {
 		var url = makeUrl('/players/'+ id +'/shots');
 		var key = ActionTypes.LOAD_DATA;
 		get(url, key, id);

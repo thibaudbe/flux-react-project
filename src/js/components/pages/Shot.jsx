@@ -1,10 +1,9 @@
 'use strict';
 
 var React          = require('react');
-var AppActions     = require('../actions/AppActions');
-var AppStore       = require('../stores/AppStore');
-var StoreWatchMixin = require('../mixins/StoreWatchMixin');
-var NotFound 			 = require('../components/NotFound.jsx');
+var AppActions     = require('../../actions/AppActions');
+var AppStore       = require('../../stores/AppStore');
+var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
@@ -23,7 +22,7 @@ var Item = React.createClass({
 
 		if (props && props !== meta.id) {
 			console.log('=> View => Actions :', props);
-			AppActions.getItem(props);
+			AppActions.getShot(props);
 			this.setState({ data: [] });
 		}
 	},
@@ -32,7 +31,7 @@ var Item = React.createClass({
 		if (typeof(this.state.data.player) !== 'undefined') {
 			var player = this.state.data.player;
 			return (
-				<Link to="user" params={{id: player.username}}>
+				<Link to="player" params={{id: player.username}}>
 					<h2>{player.name}</h2>
 					<img src={player.avatar_url}/>
 				</Link>
@@ -49,16 +48,15 @@ var Item = React.createClass({
 			return (<p>loading data ...</p>);
 		}
 
+		// <p><Link to="index">Back Home</Link></p>
+
 		return (
-			<DocumentTitle title={data.title || 'Untitled'}>
-				<div>
-					<p><Link to="index">Back Home</Link></p>
-					<h1>{data.title}</h1>
-					<img src={data.image_teaser_url} />
-					<hr/>	
-					{this.renderPlayer()}
-				</div>
-			</DocumentTitle>
+			<div>
+				<h1>{data.title}</h1>
+				<img src={data.image_teaser_url} />
+				<hr/>	
+				{this.renderPlayer()}
+			</div>
 		);
 	},
 

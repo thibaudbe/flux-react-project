@@ -7,17 +7,17 @@ var DefaultRoute  = Router.DefaultRoute;
 var NotFoundRoute = Router.NotFoundRoute;
 
 var App       = require('./components/App.jsx');
-var List      = require('./components/List.jsx');
-var Item      = require('./components/Item.jsx');
-var User      = require('./components/User.jsx');
-var Index     = require('./components/Index.jsx');
-var NotFound  = require('./components/NotFound.jsx');
+var List      = require('./components/pages/List.jsx');
+var Shot      = require('./components/pages/Shot.jsx');
+var Player    = require('./components/pages/Player.jsx');
+var Index     = require('./components/pages/Index.jsx');
+var NotFound  = require('./components/pages/NotFound.jsx');
 
 var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="list" path=":id" handler={List}/>
-    <Route name="user" path="user/:id" handler={User}/>
-    <Route name="item" path="shot/:id" handler={Item}/>
+    <Route name="player" path="player/:id" handler={Player}/>
+    <Route name="shot" path="shot/:id" handler={Shot}/>
     <DefaultRoute name="index" handler={Index}/>
     <NotFoundRoute handler={NotFound}/>
   </Route>
