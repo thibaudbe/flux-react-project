@@ -4,6 +4,7 @@ var React          = require('react');
 var AppActions     = require('../../actions/AppActions');
 var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
+var Loading 			 = require('../partials/Loading.jsx');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
@@ -60,9 +61,7 @@ var Player = React.createClass({
 		var data = this.state.data;
 		var id = this.props.id;
 
-		if (data.length === 0) {
-			return (<p>loading data ...</p>);
-		}
+		var loading = data.length === 0 ? <Loading /> : '';
 
 		if (id == 'error') {
 			return (
@@ -72,6 +71,7 @@ var Player = React.createClass({
 
 		return (
 			<div>
+				{loading}
 				<div>{this.renderPlayer()}</div>
 				<hr/>
 				<div>{this.renderShots()}</div>

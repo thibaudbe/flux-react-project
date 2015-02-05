@@ -3,7 +3,7 @@
 var AppStore 			= require('../stores/AppStore');
 var AppActions    = require('../actions/AppActions');
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var ActionTypes   = require('../constants/ActionTypes').ActionTypes;
+var ActionTypes   = require('../constants/ActionTypes');
 
 var $       = require('jquery');
 var API_URL = 'https://api.dribbble.com';

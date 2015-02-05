@@ -2,7 +2,7 @@
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var AppActions    = require('../actions/AppActions');
-var ActionTypes 	= require('../constants/ActionTypes').ActionTypes;
+var ActionTypes 	= require('../constants/ActionTypes');
 var API      			= require('../utils/API');
 var EventEmitter 	= require('events').EventEmitter;
 var assign 				= require('object-assign');

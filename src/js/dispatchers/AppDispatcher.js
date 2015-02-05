@@ -10,7 +10,7 @@ var AppDispatcher = assign(new Dispatcher(), {
    * type and additional data coming from the server.
    */
 	handleServerAction(action) {
-		console.log('Actions (Server) => Dispatcher :', action);
+		console.log('=> Actions (Server) => Dispatcher :', action);
 
 		if (!action.type)
 			throw new Error('Empty action.type: you likely mistyped the action.');
@@ -26,7 +26,7 @@ var AppDispatcher = assign(new Dispatcher(), {
    * type and additional data coming from the view.
    */
 	handleViewAction: function(action) {
-		console.log('Actions (View) => Dispatcher :', action);
+		console.log('=> Actions (View) => Dispatcher :', action);
 
 		if (!action.type)
 			throw new Error('Empty action.type: you likely mistyped the action.');

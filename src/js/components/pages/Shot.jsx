@@ -4,6 +4,7 @@ var React          = require('react');
 var AppActions     = require('../../actions/AppActions');
 var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
+var Loading 			 = require('../partials/Loading.jsx');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
@@ -40,13 +41,10 @@ var Item = React.createClass({
 	},
 
 	render: function() {
-		var text = this.state.liked ? 'like' : 'hate';
 		var data = this.state.data;
 		var id = this.props.id;
 
-		if (data.length === 0) {
-			return (<p>loading data ...</p>);
-		}
+		var loading = data.length === 0 ? <Loading /> : '';
 
 		if (id == 'error') {
 			return (
@@ -56,6 +54,7 @@ var Item = React.createClass({
 
 		return (
 			<div>
+				{loading}
 				<h1>{data.title}</h1>
 				<img src={data.image_teaser_url} />
 				<hr/>	

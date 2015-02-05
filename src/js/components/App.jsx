@@ -12,12 +12,6 @@ var Link 					= Router.Link;
 
 
 var App = React.createClass({
-
-	// getInitialState: function() {
-	// 	return {
-	// 		id: null
-	// 	}
-	// },
 	
 	lettrine: function (str) {
 		return isNaN(str) ? str.charAt(0).toUpperCase() + str.slice(1) : str;
@@ -27,7 +21,6 @@ var App = React.createClass({
 	 * @return {object}
 	 */
 	render: function() {
-		
 		var id = this.props.params.id ? this.lettrine(this.props.params.id) : '';
 		var nav = this.props.params.id ? <Navbar /> : '';
 

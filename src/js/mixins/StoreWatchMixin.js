@@ -4,9 +4,6 @@ var React          = require('react');
 var AppStore 			 = require('../stores/AppStore');
 var AppActions     = require('../actions/AppActions');
 
-// var EventEmitter = require('events').EventEmitter;
-// var loadingEvents = new EventEmitter();
-
 
 var StoreWatchMixin = {
 
@@ -14,10 +11,7 @@ var StoreWatchMixin = {
 	 * Validate props
 	 */
 	propTypes: {
-		// loading: React.PropTypes.bool.isRequired,
-		// like: React.PropTypes.bool.isRequired,
-		// data: React.PropTypes.array.isRequired,
-		id: React.PropTypes.string.isRequired,
+		id: React.PropTypes.string.isRequired
 	},
 	
 	/**
@@ -50,13 +44,12 @@ var StoreWatchMixin = {
 	componentDidMount: function() {
 		AppStore.addChangeListener(this._onStoreChange);
 
-		console.log('Page : state', this.state);
-		console.log('Page : props', this.props);
+		// console.log('Page : state', this.state);
+		// console.log('Page : props', this.props);
 		// console.log('Page : DOM', this.getDOMNode());
 		// console.log('Page : Version', React.version);
 		
 		this.getData(this.props.id);
-		// this.loadEvents();
 	},
 
 	/**
@@ -64,7 +57,7 @@ var StoreWatchMixin = {
 	 */
 	componentWillUnmount: function(){
 		AppStore.removeChangeListener(this._onStoreChange);
-	},
+	}
 
 };
 

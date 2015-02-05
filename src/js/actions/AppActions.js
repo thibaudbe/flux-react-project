@@ -1,7 +1,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher.js');
-var ActionTypes 	= require('../constants/ActionTypes.js').ActionTypes;
+var ActionTypes 	= require('../constants/ActionTypes.js');
 var API           = require('../utils/API');
 
 

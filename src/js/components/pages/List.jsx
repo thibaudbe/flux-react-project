@@ -4,6 +4,7 @@ var React          = require('react');
 var AppActions     = require('../../actions/AppActions');
 var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
+var Loading 			 = require('../partials/Loading.jsx');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
@@ -64,9 +65,7 @@ var List = React.createClass({
 		var data = this.state.data;
 		var id = this.props.id;
 
-		if (data.length === 0) {
-			return (<p>loading data ...</p>);
-		}
+		var loading = data.length === 0 ? <Loading /> : '';
 
 		if (id == 'error') {
 			return (
@@ -78,6 +77,7 @@ var List = React.createClass({
 
 		return (
 			<div>
+				{loading}
 				<hr/>
 				<p>You are on the {id} list</p>
 				<hr/>
