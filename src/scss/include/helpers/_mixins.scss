@@ -1,0 +1,26 @@
+@mixin rounded($radius) {
+ -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+         border-radius: $radius;
+}
+@mixin shadow($x, $y, $blur, $color) {
+ -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow: $x $y $blur $color;
+         box-shadow: $x $y $blur $color;
+}
+@mixin shadow-inset($x, $y, $blur, $color) {
+ -webkit-box-shadow: inset $x $y $blur $color;
+    -moz-box-shadow: inset $x $y $blur $color;
+         box-shadow: inset $x $y $blur $color;
+}
+@mixin transition($property) {
+ -webkit-transition: $property .2s ease;
+    -moz-transition: $property .2s ease;
+      -o-transition: $property .2s ease;
+         transition: $property .2s ease;
+}
+@mixin box-sizing {
+ -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+}

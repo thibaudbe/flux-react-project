@@ -64,3 +64,7 @@ dist/
 # Apple© ios
 .DS_store
 
+### Sass ###
+.sass-cache
+*.css.map
+

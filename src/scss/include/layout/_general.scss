@@ -1,0 +1,17 @@
+
+
+body {
+  font-family: $primary-font;
+  font-size: 14px;
+  padding: 50px;
+}
+
+p {
+  background: $primary-link;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, .5)
+}
+
+a {
+  color: $primary-link;
+}

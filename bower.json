@@ -1,0 +1,27 @@
+{
+  "name": "flux-react-project",
+  "version": "0.0.1",
+  "homepage": "https://github.com/thibaudbe/flux-react-project",
+  "authors": [
+    "Thibaud B <contact@thibaudb.com>"
+  ],
+  "description": "Flux Reactjs sample project",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.3.0",
+    "normalize.sass": "~2.0.0",
+    "bourbon": "~4.1.1",
+    "neat": "~1.7.1"
+  }
+}
