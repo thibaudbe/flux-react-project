@@ -58,12 +58,17 @@ var Player = React.createClass({
 
 	render: function() {
 		var data = this.state.data;
+		var id = this.props.id;
 
 		if (data.length === 0) {
 			return (<p>loading data ...</p>);
 		}
 
-		// <p><Link to="app">Back</Link></p>
+		if (id == 'error') {
+			return (
+				<NotFound/>
+			);
+		}
 
 		return (
 			<div>

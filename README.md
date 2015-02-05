@@ -45,6 +45,8 @@ Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) ins
 - Breadcrumbs
 - Page transition
 - Demo hosting
+- Lazyload
+- Pagination
 
 
 ## Sources

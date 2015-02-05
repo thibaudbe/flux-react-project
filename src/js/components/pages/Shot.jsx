@@ -42,13 +42,17 @@ var Item = React.createClass({
 	render: function() {
 		var text = this.state.liked ? 'like' : 'hate';
 		var data = this.state.data;
-		var id = this.state.id;
+		var id = this.props.id;
 
 		if (data.length === 0) {
 			return (<p>loading data ...</p>);
 		}
 
-		// <p><Link to="index">Back Home</Link></p>
+		if (id == 'error') {
+			return (
+				<NotFound/>
+			);
+		}
 
 		return (
 			<div>
