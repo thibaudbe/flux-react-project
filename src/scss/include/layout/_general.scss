@@ -1,17 +1,26 @@
 
+html, body {
+  height: 100%;
+}
 
 body {
-  font-family: $primary-font;
-  font-size: 14px;
-  padding: 50px;
+  margin: 0;
 }
 
-p {
-  background: $primary-link;
-  border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, .5)
+.App {
+  height: 100%;
 }
 
-a {
-  color: $primary-link;
+img {
+  object-fit: cover;
 }
+
+// body {
+//   font-family: $primary-font;
+//   font-size: 14px;
+//   padding: 50px;
+// }
+
+// a {
+//   color: $primary-link;
+// }
