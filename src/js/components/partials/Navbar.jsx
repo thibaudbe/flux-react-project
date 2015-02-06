@@ -19,7 +19,7 @@ var NavBar = React.createClass({
 		AppStore.addChangeListener(this._onStoreChange);
 	},
 
-	componentWillUnmount: function(){
+	componentWillUnmount: function() {
 		AppStore.removeChangeListener(this._onStoreChange);
 	},
 

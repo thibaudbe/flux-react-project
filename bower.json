@@ -19,7 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "fontawesome": "~4.3.0",
-    "normalize.sass": "~2.0.0"
+    "fontawesome": "~4.3.0"
   }
 }

@@ -16,10 +16,12 @@ var Index = React.createClass({
 	render: function() {
 		return (
 			<DocumentTitle title='App'>
-				<div>
-					<h2><Link to="list" params={{id: 'popular'}}>Popular</Link></h2>
-					<h2><Link to="list" params={{id: 'everyone'}}>Everyone</Link></h2>
-					<h2><Link to="list" params={{id: 'debuts'}}>Debuts</Link></h2>
+				<div className="home">
+					<ul className="home__title">
+						<li><Link to="list" params={{id: 'popular'}}><span>Popular</span></Link></li>
+						<li><Link to="list" params={{id: 'everyone'}}><span>Everyone</span></Link></li>
+						<li><Link to="list" params={{id: 'debuts'}}><span>Debuts</span></Link></li>
+					</ul>
 				</div>
 			</DocumentTitle>
 		);
