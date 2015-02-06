@@ -1,0 +1,157 @@
+
+/* Menu Button */
+.menu__open-button {
+	position: fixed;
+	z-index: 1000;
+	margin: 1em;
+	padding: 0;
+	width: 2.5em;
+	height: 2.25em;
+	border: none;
+	text-indent: 2.5em;
+	font-size: 1.5em;
+	color: transparent;
+	background: transparent;
+
+	&::before {
+		position: absolute;
+		top: 0.5em;
+		right: 0.5em;
+		bottom: 0.5em;
+		left: 0.5em;
+		opacity: .6;
+		@include background-image(linear-gradient(#fff 20%, transparent 20%, transparent 40%, #fff 40%, #fff 60%, transparent 60%, transparent 80%, #fff 80%));
+		content:'';
+	}
+
+	&:hover {
+		opacity: 0.6;
+	}
+}
+
+
+/* Close Button */
+.menu__close-button {
+	width: 1em;
+	height: 1em;
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	overflow: hidden;
+	text-indent: 1em;
+	font-size: 0.55em;
+	border: none;
+	background: transparent;
+	color: transparent;
+
+	&::before,
+	&::after {
+		content:'';
+		position: absolute;
+		width: 3px;
+		height: 100%;
+		top: 0;
+		left: 50%;
+		background: #999;
+	}
+
+	&::before {
+		@include transform(rotate(45deg));
+	}
+
+	&::after {
+		@include transform(rotate(-45deg));
+	}
+}
+
+
+/* Background */
+.bg {
+	position: absolute;
+	background: black;
+	opacity: 0;
+	z-index: 1000;
+	cursor: pointer;
+	@include transition(opacity 0.8);
+	@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+	@include transform(translate3d(0, 0, 0));
+}
+
+/* Menu */
+.menu {
+	position: absolute;
+	z-index: 1001;
+	width: 300px;
+	height: 100%;
+	background: #000;
+	padding: 2.5em 1.5em 0;
+	font-size: 1.15em;
+	@include transform(translate3d(-320px, 0, 0));
+	@include transition(transform 0.4s);
+	@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+
+	.menu__inner, 
+	.menu__items {
+		height: 100%;
+
+		a {
+			@include transition(transform 0s 0.4s);
+			@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+		}
+	}
+	.menu__items {
+		@include transform(translate3d(0, 100%, 0));
+
+		a {
+			color: #fff;
+			display: block;
+			padding: 0.8em;
+			@include transform(translate3d(0, 500px, 0));
+
+			span {
+				margin-left: 10px;
+				font-weight: 700;
+			}
+
+			@for $i from 1 through 10 {
+				&:nth-of-type(#{$i}) {
+					@include transform(translate3d(0, #{$i * 1400}px, 0));
+				}
+			}
+		}
+	}	
+}
+
+
+/* Shown menu */
+.show-menu {
+	
+	.bg {
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		opacity: .5;
+		z-index: 1000;
+		cursor: pointer;
+		@include transition(opacity 0.8s);
+		@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+		@include transform(translate3d(0, 0, 0));
+	}
+
+	.menu {
+		@include transform(translate3d(0, 0, 0));
+		@include transition(transform 0.8s);
+		@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+	
+		.menu__items, 
+		.menu__items a {
+			@include transform(translate3d(0, 0, 0));
+			@include transition(transform 0.8s);
+			@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+		}
+		.menu__items a {
+			@include transition-duration(0.9s);
+		}
+	}
+}

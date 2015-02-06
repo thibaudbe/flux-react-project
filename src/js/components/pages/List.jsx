@@ -32,16 +32,6 @@ var List = React.createClass({
 		}
 	},
 
-	componentDidUpdate: function() {
-		loadingEvents.emit('loadStart');
-	},
-
-	handleClick: function(event) {
-		this.setState({
-			liked: !this.state.liked
-		});
-	},
-
 	renderShots: function() {
 		if (typeof(this.state.data.shots) !== 'undefined') {
 			var shots = this.state.data.shots;
@@ -62,7 +52,6 @@ var List = React.createClass({
 	},
 
 	render: function() {
-		var text = this.state.liked ? 'like' : 'hate';
 		var data = this.state.data;
 		var id = this.state.id;
 
@@ -73,8 +62,6 @@ var List = React.createClass({
 				<NotFound/>
 			);
 		}
-
-		// <p onClick={this.handleClick}>I {text}</p>
 
 		return (
 			<div>

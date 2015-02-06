@@ -11,7 +11,7 @@ var CHANGE_EVENT = 'change';
 
 var _state = {
 	loading: false,
-	liked: false,
+	open: false,
 	id: null,
 	data: []
 };

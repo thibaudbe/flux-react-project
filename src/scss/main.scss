@@ -1,28 +1,26 @@
 
-// Framework
+// Frameworks
 @import "bourbon/bourbon";
 @import "neat/neat";
 @import "bitters/base/base";
 
-// Base
-@import "include/base/typography";
-
 // Helpers 
-@import "include/helpers/variables";
-@import "include/helpers/functions";
-@import "include/helpers/mixins";
+@import "base/helpers/variables";
+@import "base/helpers/functions";
+@import "base/helpers/mixins";
 
 // Components
-@import "include/components/navigation";
+@import "base/components/navigation";
 
 // Layout
-@import "include/layout/general";
-@import "include/layout/header";
-@import "include/layout/footer";
+@import "base/layout/general";
+@import "base/layout/header";
+@import "base/layout/footer";
 
 // Pages
-@import "include/pages/home";
-@import "include/pages/list";
-@import "include/pages/shot";
-@import "include/pages/player";
-@import "include/pages/404";
+@import "base/pages/home";
+@import "base/pages/list";
+@import "base/pages/shot";
+@import "base/pages/player";
+@import "base/pages/404";
+

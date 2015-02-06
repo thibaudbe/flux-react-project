@@ -2,8 +2,8 @@
 button {
   @include appearance(none);
   -webkit-font-smoothing: antialiased;
-  background-color: $action-color;
-  border-radius: $base-border-radius;
+  // background-color: $action-color;
+  // border-radius: $base-border-radius;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -18,10 +18,14 @@ button {
   vertical-align: middle;
   white-space: nowrap;
 
-  &:hover,
+  // &:hover,
+  // &:focus {
+  //   background-color: darken($action-color, 15%);
+  //   color: #fff;
+  // }
+
   &:focus {
-    background-color: darken($action-color, 15%);
-    color: #fff;
+    outline: 0;
   }
 
   &:disabled {

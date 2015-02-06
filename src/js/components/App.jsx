@@ -3,7 +3,7 @@
 var React 				= require('react');
 var AppStore 			= require('../stores/AppStore');
 var AppActions    = require('../actions/AppActions');
-var Navbar        = require('../components/partials/Navbar.jsx');
+var Navbar        = require('./partials/Navbar.jsx');
 
 var DocumentTitle	= require('react-document-title');
 var Router 				= require('react-router');

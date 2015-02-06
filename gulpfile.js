@@ -11,7 +11,7 @@ var webpackConfig = require('./webpack.config.js')[environment];
 var port = $.util.env.port || 1337;
 var src = './src/';
 var dist = './dist/';
-var bower = './bower_components/' 
+var bower = './bower_components/' ;
 
 // https://github.com/ai/autoprefixer
 var autoprefixerBrowsers = [                 
@@ -50,8 +50,8 @@ gulp.task('html', function() {
 gulp.task('styles', function () {
 	return sass(src +'scss/main.scss', {
 			loadPath: [
-				bower + 'fontawesome/scss/',
-				bower + 'normalize.sass/'
+				bower + 'fontawesome/scss/'
+				// bower + 'normalize.sass/'
 			],
 			style: 'compressed'
 		}) 
@@ -102,7 +102,6 @@ gulp.task('init', function() { 
 
 // watch sass, html and js file changes
 gulp.task('watch', function() {
-	gulp.watch('./gulpfile.js', []);
 	gulp.watch(src + 'index.html', ['html']);
 	gulp.watch(src + 'scss/**/**/*.scss', ['styles']);
 	gulp.watch(src + 'js/**/*.js', ['scripts']);

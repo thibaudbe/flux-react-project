@@ -1,13 +1,18 @@
 
 .error {
 	background: center center url('../images/404.gif');
-	// background-image: url('/images/404.gif');
-	// background-position: center center;
 	background-size: cover;
 	height: 100%;
+	width: 100%;
+	display: table;
 
-	.error-info {
-		padding: 50px;
+	.error__info {
+		height: 100%;
+		text-align: center;
+		background: black;
+		opacity: .6;
+		display: table-cell;
+		vertical-align: middle;
 	}
 
 	h1 {
