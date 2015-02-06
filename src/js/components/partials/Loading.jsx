@@ -15,8 +15,10 @@ var Loading = React.createClass({
 	render: function() {
 
 		return (
-			<div>
-				<p>loading...</p>
+			<div className="loading">
+				<div className="loading__inner">
+					<p>loading...</p>
+				</div>
 			</div>
 		);
 
