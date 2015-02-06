@@ -10,7 +10,7 @@ var API_URL = 'https://api.dribbble.com';
 
 
 function makeUrl(part) {
-	return API_URL + part;
+	return API_URL + part +'?per_page=28';
 }
 
 function dispatch(key, id, data) {

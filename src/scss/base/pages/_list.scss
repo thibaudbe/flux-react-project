@@ -1,0 +1,53 @@
+
+.list {
+
+	.page-title {
+		background: orange;
+		color: #fff;
+		padding: 25px 0 25px 100px;
+		text-transform: capitalize;
+
+		h1 {
+			margin: 0;
+		}
+	}
+
+	.img-avatar {
+		width: 40px;
+		height: 40px;
+	  margin: 0;
+		@include border-radius(50%);
+		@include box-shadow(0, 0, 0, 2px, #efefef);
+
+		img {
+
+		}
+	}
+
+	.shot {
+		background: #efefef;
+		padding: 5px;
+		@include border-radius(4px);
+		margin-bottom: 20px;
+
+		.shot__link {
+
+		}
+
+		.shot__player {
+		  display: block;
+			margin-top: -15px;
+			padding-left: 5px;
+		}
+
+		.shot__player-name {
+			font-size: .7em;
+			text-align: right;
+			display: block;
+			margin-top: -15px;
+			color: #999;
+		}
+
+	}
+	
+}

@@ -37,14 +37,19 @@ var List = React.createClass({
 			var shots = this.state.data.shots;
 			var shotsNode = shots.map(function(shot, i) {
 				return (
-					<li key={i}>
-						<Link to="shot" params={{id: shot.id}}>
-							{shot.title} <img width="27" height="20" src={shot.image_url}/>
-						</Link>
-						<Link to="player" params={{id: shot.player.username}}>
-							{shot.player.name}
-						</Link>
-					</li>
+					<div key={i} className="col-3">
+						<div className="shot">
+							<Link className="shot__link" to="shot" params={{id: shot.id}}>
+								<img width="400" height="300" src={shot.image_url}/>
+							</Link>
+							<Link className="shot__player" to="player" params={{id: shot.player.username}}>
+								<figure className="img-avatar">
+									<img className="img-avatar" width="160" height="160" src={shot.player.avatar_url}/>
+								</figure>
+								<span className="shot__player-name">by {shot.player.name}</span>
+							</Link>
+						</div>
+					</div>
 				);
 			});
 			return shotsNode;
@@ -64,14 +69,15 @@ var List = React.createClass({
 		}
 
 		return (
-			<div>
+			<div className="list">
 				{loading}
-				<hr/>
-				<p>You are on the {id} list</p>
-				<hr/>
-				<ul>
+				<header className="page-title">
+					<h1>{id}</h1>
+				</header>
+				<div className="container">
 					{this.renderShots()}
-				</ul>
+					<hr/>
+				</div>
 			</div>
 		);
 	},

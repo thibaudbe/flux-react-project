@@ -3,10 +3,10 @@
 .menu__open-button {
 	position: fixed;
 	z-index: 1000;
-	margin: 1em;
+  margin: .56em;
 	padding: 0;
-	width: 2.5em;
-	height: 2.25em;
+	width: 2em;
+  height: 1.8em;
 	border: none;
 	text-indent: 2.5em;
 	font-size: 1.5em;
@@ -87,16 +87,18 @@
 	padding: 2.5em 1.5em 0;
 	font-size: 1.15em;
 	@include transform(translate3d(-320px, 0, 0));
-	@include transition(transform 0.4s);
-	@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+	@include transition(transform 0.2s);
+	@include transition-timing-function(ease-in-out);
+	// @include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
 
 	.menu__inner, 
 	.menu__items {
 		height: 100%;
 
 		a {
-			@include transition(transform 0s 0.4s);
-			@include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+			@include transition(transform 0s 0.2s);
+			@include transition-timing-function(ease-in-out);
+			// @include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
 		}
 	}
 	.menu__items {

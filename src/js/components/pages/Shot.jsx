@@ -35,7 +35,7 @@ var Item = React.createClass({
 			return (
 				<Link to="player" params={{id: player.username}}>
 					<h2>{player.name}</h2>
-					<img src={player.avatar_url}/>
+					<img className="img-avatar" width="160" height="160" src={player.avatar_url}/>
 				</Link>
 			);
 		}
@@ -57,7 +57,7 @@ var Item = React.createClass({
 			<div>
 				{loading}
 				<h1>{data.title}</h1>
-				<img src={data.image_teaser_url} />
+				<img width="400" height="300" src={data.image_url} />
 				<hr/>	
 				{this.renderPlayer()}
 			</div>
