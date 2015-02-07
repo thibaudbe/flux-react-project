@@ -4,6 +4,7 @@ var React 				= require('react');
 var AppStore 			= require('../stores/AppStore');
 var AppActions    = require('../actions/AppActions');
 var Navbar        = require('./partials/Navbar.jsx');
+var Footer        = require('./partials/Footer.jsx');
 
 var DocumentTitle	= require('react-document-title');
 var Router 				= require('react-router');
@@ -23,12 +24,14 @@ var App = React.createClass({
 	render: function() {
 		var id = this.props.params.id ? this.lettrine(this.props.params.id) : '';
 		var nav = this.props.params.id ? <Navbar /> : '';
+		var footer = this.props.params.id ? <Footer /> : '';
 
 		return (
 			<DocumentTitle title={'App | '+ id || 'Untitled'}>
 				<div className='App'>
 					{nav}
 					<RouteHandler {...this.props.params} />
+					{footer}
 				</div>
 			</DocumentTitle>
 		);
