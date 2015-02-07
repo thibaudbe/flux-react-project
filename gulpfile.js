@@ -1,8 +1,15 @@
 var gulp = require('gulp');
 var path = require('path');
-var $ = require('gulp-load-plugins')();
 var del = require('del');
-var sass = require('gulp-ruby-sass');
+var es = require('event-stream');
+var gutil = require('gulp-util');
+var spawn = require('child_process').spawn;
+
+var $ = require('gulp-load-plugins')({
+	pattern: ['gulp-*', 'gulp.*'],
+	replaceString: /\bgulp[\-.]/
+});
+
 // set variable via $ gulp --type production
 var environment = $.util.env.type || 'development';
 var isProduction = environment === 'production';
@@ -37,35 +44,48 @@ gulp.task('scripts', function() {
 		.pipe($.connect.reload());
 });
 
-// copy html from src to dist
+// Copy html from src to dist + minify
 gulp.task('html', function() {
 	return gulp.src(src + 'index.html')
+		.pipe($.minifyHtml({
+			comments: true,
+			spare: true
+		}))
 		.pipe(gulp.dest(dist))
 		.pipe($.size({ title : 'html' }))
 		.pipe($.duration('html'))
 		.pipe($.connect.reload());
 });
 
-// Compile Sass using Bourbon
-gulp.task('styles', function () {
-	return sass(src +'scss/main.scss', {
-			loadPath: [
-				bower + 'fontawesome/scss/'
-				// bower + 'normalize.sass/'
-			],
-			style: 'compressed'
-		}) 
-		.on('error', function (err) {
-			console.error('Error!', err.message);
+// Compile styles using Bourbon & Neat
+gulp.task('styles', function(){
+
+	// var sassFiles = gulp.src(src +'scss/main.scss')
+	var sassFiles = $.rubySass(src +'scss/main.scss', {
+			style: 'compressed',
+			sourcemap: false, 
+			precision: 2
 		})
+		.on('error', function(err){
+			new gutil.PluginError('style', err, { showStack: true });
+		});
+
+	return es.concat(gulp.src([
+		bower + 'fontawesome/css/font-awesome.min.css',
+	]), sassFiles)
+		.pipe($.concat('main.min.css'))
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
+		.pipe(isProduction ? $.combineMediaQueries({
+			log: true
+		}) : gutil.noop())
+		.pipe(isProduction ? $.cssmin() : gutil.noop())
 		.pipe(gulp.dest(dist +'css'))
 		.pipe($.size({ title : 'styles' }))
 		.pipe($.duration('styles'))
 		.pipe($.connect.reload());
 });
 
-// add livereload on the given port
+// Add livereload on the given port
 gulp.task('serve', function() {
 	$.connect.server({
 		root: dist,
@@ -76,7 +96,7 @@ gulp.task('serve', function() {
 	});
 });
 
-// copy images
+// Copy images
 gulp.task('images', function(cb) {
 	return gulp.src(src + 'images/**/*.{png,jpg,jpeg,gif}')
 		.pipe($.size({ title : 'images' }))
@@ -84,12 +104,13 @@ gulp.task('images', function(cb) {
 		.pipe(gulp.dest(dist + 'images/'));
 });
 
-// A task to copy icons, really ? yes.
-gulp.task('icons', function() { 
-	return gulp.src(bower + 'fontawesome/fonts/**.*') 
-		.pipe(gulp.dest(dist + 'fonts/')); 
+// Copy icons
+gulp.task('icons', function() {
+	return gulp.src(bower + 'fontawesome/fonts/**.*')
+		.pipe(gulp.dest(dist + 'fonts/'));
 });
 
+// Copy elements
 gulp.task('init', function() { 
 	return gulp.src([
 			src + 'favicon.ico',
@@ -100,31 +121,42 @@ gulp.task('init', function() { 
 		.pipe(gulp.dest(dist)); 
 });
 
-// watch sass, html and js file changes
+// Auto reload gulpfile
+gulp.task('auto-reload', function() {
+	spawn('gulp', [], { stdio: 'inherit' });
+	process.exit();
+});
+
+// Watch sass, html and js file changes
 gulp.task('watch', function() {
+	gulp.watch('gulpfile.js', ['auto-reload']);
 	gulp.watch(src + 'index.html', ['html']);
 	gulp.watch(src + 'scss/**/**/*.scss', ['styles']);
 	gulp.watch(src + 'js/**/*.js', ['scripts']);
 	gulp.watch(src + 'js/**/*.jsx', ['scripts']);
 });
 
-// remove bundels
+// Remove bundels
 gulp.task('clean', function(cb) {
 	del([dist], cb);
 });
 
 // by default build project and then watch files in order to trigger livereload
-gulp.task('default', ['build', 'serve', 'watch']);
+gulp.task('default', [
+	'build', 
+	'serve', 
+	'watch'
+]);
 
-// waits until clean is finished then builds the project
+// Waits until clean is finished then builds the project
 gulp.task('build', ['clean'], function(){
 	gulp.start([
-		'images', 
-		'html',
-		'styles',
-		'scripts',
+		'init',
 		'icons',
-		'init'
+		'html',
+		'images', 
+		'styles',
+		'scripts'
 	]);
 });
 
