@@ -17,7 +17,7 @@ var Loading = React.createClass({
 		return (
 			<div className="loading">
 				<div className="loading__inner">
-					<p>loading...</p>
+					<i className="fa fa-spinner fa-spin"></i>
 				</div>
 			</div>
 		);

@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   z-index: 50;
-  background: #fff;
+  background: $menu;
 
   height: 100%;
   width: 100%;
@@ -16,5 +16,8 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+
+    font-size: 2em;
+    color: #fff;
   }
 }
