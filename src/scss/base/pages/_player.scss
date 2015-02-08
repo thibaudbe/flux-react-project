@@ -1,0 +1,52 @@
+
+.player-page {
+	// padding-top: 100px;
+	background: #fff;
+	
+	.player__banner {
+		text-align: center;
+		background: $menu;
+		// padding-top: 100px;
+		height: 200px;
+	}
+
+	.player__info {
+		margin-top: -60px;
+		text-align: center;
+		margin-bottom: 30px;
+	  position: relative;
+
+		.img-avatar {
+			width: 120px;
+			height: 120px;
+			margin: 0;
+			overflow: hidden;
+			@include border-radius(50%);
+			@include box-shadow(0, 2px, 2px, 0, rgba(0, 0, 0, 0.05));
+			border: 4px solid #fff;
+		  margin: 0 auto;
+		  background: #fff;
+		}
+
+		h2 {
+		  margin-top: 20px;
+		}
+
+	}
+
+	.shot {
+		@extend .paper-style;
+
+		p {
+			font-size: .8em;
+			margin: .4em 0 .2em;
+			text-align: center;
+
+			span {
+				margin-right: 10px;
+				color: #999;
+			}
+		}
+	}
+
+}
