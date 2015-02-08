@@ -7,6 +7,9 @@ var API           = require('../utils/API');
 
 var AppActions = {
 
+	/**
+	 * @param  {string} id
+	 */
 	getList: function(id) {
 		console.log('=> Actions => API :', id);
 		API.getList(id);
@@ -20,7 +23,7 @@ var AppActions = {
 	getPlayer: function(id) {
 		console.log('=> Actions => API :', id);
 		API.getPlayer(id);
-	},
+	}
 
 };
 

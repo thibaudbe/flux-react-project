@@ -58,7 +58,7 @@ gulp.task('html', function() {
 });
 
 // Compile styles using Bourbon & Neat
-gulp.task('styles', function(){
+gulp.task('styles', function() {
 
 	// var sassFiles = gulp.src(src +'scss/main.scss')
 	var sassFiles = $.rubySass(src +'scss/main.scss', {
@@ -149,7 +149,7 @@ gulp.task('default', [
 ]);
 
 // Waits until clean is finished then builds the project
-gulp.task('build', ['clean'], function(){
+gulp.task('build', ['clean'], function() {
 	gulp.start([
 		'init',
 		'icons',
@@ -159,5 +159,3 @@ gulp.task('build', ['clean'], function(){
 		'scripts'
 	]);
 });
-
-

@@ -1,5 +1,5 @@
 
-.error {
+.error-page {
 	background: center center url('../images/404.gif');
 	background-size: cover;
 	height: 100%;
@@ -22,6 +22,25 @@
 
 	h1, p {
 		color: #fff;
+	}
+
+	.footer {
+		@extend .footer-page-style;
+
+		.footer__inner {
+			border: none;
+			margin-top: 0;
+		}
+
+		p {
+			font-size: .8em;
+			color: #D0D0D0;
+
+			a {
+				color: #fff;
+				font-weight: bold;
+			}
+		}
 	}
 
 }

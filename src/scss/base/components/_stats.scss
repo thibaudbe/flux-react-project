@@ -20,9 +20,11 @@
   $stats-color: lighten($base-accent-color, 10%);
 
   padding: $base-spacing / 2;
+  text-align: center;
 
   ul {
     padding: 0;
+    display: inline-block;
   }
 
   li {

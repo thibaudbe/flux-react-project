@@ -2,14 +2,14 @@
 html, body {
 	height: 100%;
 	margin: 0;
-
+	background: $menu;
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
 }
 
 
-.App {
+.wrap {
 	height: 100%;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
@@ -27,6 +27,20 @@ img {
 
 .text-center {
 	text-align: center;
+}
+
+.head-page-style {
+	background: $menu;
+	color: #fff;
+	text-transform: capitalize;
+}
+
+.footer-page-style {
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 }
 
 // body {
