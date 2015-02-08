@@ -6,17 +6,21 @@ var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
 var NotFound       = require('../pages/NotFound.jsx');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Navbar         = require('../partials/Navbar.jsx');
+var Header         = require('../partials/Header.jsx');
+var Footer         = require('../partials/Footer.jsx');
+// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
 var RouteHandler   = Router.RouteHandler;
 var Link           = Router.Link;
+var Navigation     = Router.Navigation;
 
 
 var Item = React.createClass({
 
-	mixins: [StoreWatchMixin],
+	mixins: [StoreWatchMixin, Navigation],
 
 	getData: function(props) {
 		var props = props.id || props;
@@ -32,11 +36,27 @@ var Item = React.createClass({
 	renderPlayer: function() {
 		if (typeof(this.state.data.player) !== 'undefined') {
 			var player = this.state.data.player;
+			var data = this.state.data;
+			var date = data.created_at;
+			//  | {date.getFullYear()}
+
 			return (
-				<Link to="player" params={{id: player.username}}>
-					<h2>{player.name}</h2>
-					<img className="img-avatar" width="160" height="160" src={player.avatar_url}/>
-				</Link>
+				<div className="container animated fadeInDown">
+					<div className="col-9">
+						<figure className="img-avatar">
+							<Link to="player" params={{id: player.username}}>
+								<img width="160" height="160" src={player.avatar_url}/>
+							</Link>
+						</figure>
+						<div className="info">
+							<h1 className="">{data.title}</h1>
+							<p className="">by <Link to="player" params={{id: player.username}}><strong>{player.name}</strong></Link></p>
+						</div>
+					</div>
+					<div className="col-3">
+						<div className="text-right" onClick={() => this.goBack()}>Back</div>
+					</div>
+				</div>
 			);
 		}
 	},
@@ -47,19 +67,38 @@ var Item = React.createClass({
 
 		var loading = data.length === 0 ? <Loading /> : '';
 
-		if (id == 'error') {
-			return (
-				<NotFound/>
-			);
-		}
+		if (id == 'error') 
+			return <NotFound/>
 
 		return (
-			<div>
+			<div className="shot-page page">
+				<Navbar />
+				<Header title="shot" />
 				{loading}
-				<h1>{data.title}</h1>
-				<img width="400" height="300" src={data.image_url} />
-				<hr/>	
-				{this.renderPlayer()}
+				<div className="player">
+					{this.renderPlayer()}
+				</div>
+				<div className="container">
+					<div className="col-7">
+						<div className="shot animated zoomIn">
+							<img width="400" height="300" src={data.image_url} />
+						</div>
+					</div>
+					<div className="col-5">
+						<div className="stats">
+							<ul>
+								<li>{data.likes_count}<span><i className="fa fa-heart"></i></span></li>
+								<li>{data.views_count}<span><i className="fa fa-eye"></i></span></li>
+								<li>{data.comments_count}<span><i className="fa fa-comment"></i></span></li>
+								<li>{data.rebounds_count}<span><i className="fa fa-reply"></i></span></li>
+							</ul>
+						</div>
+						<div>
+							<p>{data.description}</p>
+						</div>
+					</div>
+				</div>
+				<Footer />
 			</div>
 		);
 	},

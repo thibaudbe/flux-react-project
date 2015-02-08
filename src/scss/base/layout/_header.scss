@@ -1,0 +1,19 @@
+
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 61;
+
+
+	.header__inner {
+		@extend .head-page-style;
+		padding: 25px 0 25px 85px;
+
+		h1 {
+			margin: 0;
+		}
+	
+	}
+
+}

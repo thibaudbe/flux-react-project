@@ -1,13 +1,27 @@
 
-.home {
-	height: 100%;
+.home-page {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-image: url('../images/home.jpg');
 
-	ul.home__title {
+	.logo {
+		position: absolute;
+		top: 20px;
+		left: 30px;
+		padding: 5px;
+		font-size: 2em;
+		color: #ccc;
+		z-index: 20;
+		cursor: default;
+		@include user-select(none);	
+	}
+
+	// Ul
+	.home__title {
+	  padding-top: 100px;
 	  height: 100%;
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-image: url('../images/home.jpg');
+		height: calc(100% - 100px);
 
 		li {
 			text-align: center;
@@ -41,13 +55,13 @@
 			  	@include border-bottom-radius(3px);
 			  	@include border-left-radius(3px);
 
-			  	@media screen and (max-width: 480px) {
+			  	@media screen and (max-width: $mobile) {
 						border-color: #C2C2C2;
 						background: rgba(255, 255, 255, .5);
 			  	}
 				}
 
-				@media screen and (min-width: 481px) {
+				@media screen and (min-width: $mobile) {
 					&:hover {
 						span {
 							border-color: #C2C2C2;
@@ -56,21 +70,26 @@
 				}
 				
 			}
-
-			&:hover {
-				// &:nth-of-type(1) {
-				// 	background: rgba(44, 153, 145, 0.5);
-				// }
-				// &:nth-of-type(2) {
-				// 	background: rgba(255, 165, 0, 0.5);
-				// }
-				// &:nth-of-type(3) {
-				// 	background: rgba(152, 95, 158, 0.5);
-				// }
-			}
-
 		}
-	
+	}
+
+	.footer {
+		@extend .footer-page-style;
+
+		.footer__inner {
+			border: none;
+			margin-top: 0;
+		}
+
+		p {
+			font-size: .8em;
+			color: #D0D0D0;
+
+			a {
+				color: #fff;
+				font-weight: bold;
+			}
+		}
 	}
 }
 

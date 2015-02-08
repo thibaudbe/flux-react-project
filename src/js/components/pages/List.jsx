@@ -6,7 +6,10 @@ var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
 var NotFound       = require('../pages/NotFound.jsx');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Navbar         = require('../partials/Navbar.jsx');
+var Header         = require('../partials/Header.jsx');
+var Footer         = require('../partials/Footer.jsx');
+// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -38,13 +41,13 @@ var List = React.createClass({
 			var shotsNode = shots.map(function(shot, i) {
 				return (
 					<div key={i} className="col-3">
-						<div className="shot">
+						<div className="shot animated zoomIn">
 							<Link className="shot__link" to="shot" params={{id: shot.id}}>
 								<img width="400" height="300" src={shot.image_url}/>
 							</Link>
 							<Link className="shot__player" to="player" params={{id: shot.player.username}}>
 								<figure className="img-avatar">
-									<img className="img-avatar" width="160" height="160" src={shot.player.avatar_url}/>
+									<img width="160" height="160" src={shot.player.avatar_url}/>
 								</figure>
 								<span className="shot__player-name">by {shot.player.name}</span>
 							</Link>
@@ -62,22 +65,24 @@ var List = React.createClass({
 
 		var loading = data.length === 0 ? <Loading /> : '';
 
-		if (id == 'error') {
-			return (
-				<NotFound/>
-			);
-		}
+		if (id == 'error') 
+			return <NotFound/>
 
 		return (
-			<div className="list">
+			<div className="list-page page">
+				
+				<Navbar />
+				
+				<Header title={this.props.id} />
+				
 				{loading}
-				<header className="page-title">
-					<h1>{id}</h1>
-				</header>
+				
 				<div className="container">
 					{this.renderShots()}
-					<hr/>
 				</div>
+				
+				<Footer />
+			
 			</div>
 		);
 	},

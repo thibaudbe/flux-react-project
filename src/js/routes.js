@@ -15,11 +15,11 @@ var NotFound  = require('./components/pages/NotFound.jsx');
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="list" path=":id" handler={List}/>
-    <Route name="player" path="player/:id" handler={Player}/>
-    <Route name="shot" path="shot/:id" handler={Shot}/>
-    <DefaultRoute name="index" handler={Index}/>
-    <NotFoundRoute handler={NotFound}/>
+    <Route name="list" path=":id" handler={List} />
+    <Route name="player" path="player/:id" handler={Player} />
+    <Route name="shot" path="shot/:id" handler={Shot} />
+    <DefaultRoute name="index" handler={Index} />
+    <NotFoundRoute handler={NotFound} />
   </Route>
 );
 

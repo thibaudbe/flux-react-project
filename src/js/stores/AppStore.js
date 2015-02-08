@@ -4,6 +4,7 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var AppActions    = require('../actions/AppActions');
 var ActionTypes 	= require('../constants/ActionTypes');
 var API      			= require('../utils/API');
+
 var EventEmitter 	= require('events').EventEmitter;
 var assign 				= require('object-assign');
 
@@ -11,7 +12,7 @@ var CHANGE_EVENT = 'change';
 
 var _state = {
 	loading: false,
-	open: false,
+	menu: false,
 	id: null,
 	data: []
 };
@@ -29,6 +30,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
 	 */
 	getState: function() {
 		return _state;
+	},
+
+	find: function(filter) {
+		// query
 	},
 
 	emitChange: function() {

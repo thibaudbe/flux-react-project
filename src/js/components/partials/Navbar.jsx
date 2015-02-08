@@ -1,31 +1,23 @@
 'use strict';
 
 var React         = require('react');
-var AppStore      = require('../../stores/AppStore');
-
 
 var Router        = require('react-router');
 var RouteHandler  = Router.RouteHandler;
 var Link          = Router.Link;
 
 
-var NavBar = React.createClass({
+var Navbar = React.createClass({
 
 	getInitialState: function() {
-		return AppStore.getState();
-	},
-
-	componentDidMount: function() {
-		AppStore.addChangeListener(this._onStoreChange);
-	},
-
-	componentWillUnmount: function() {
-		AppStore.removeChangeListener(this._onStoreChange);
+		return {
+			menu: false
+		}
 	},
 
 	toggleMenu: function(event) {
 		this.setState({
-			open: !this.state.open
+			menu: !this.state.menu
 		});
 	},
 
@@ -33,35 +25,35 @@ var NavBar = React.createClass({
 	 * @return {object}
 	 */
 	render: function() {
-		var openClass = this.state.open ? 'show-menu' : '';
+		var menuClass = this.state.menu ? 'show-menu' : '';
 
 		return (
-			<div id="header" role="navigation" className={openClass}>
+			<div id="navigation" role="navigation" className={menuClass}>
 				<div className="menu">
 					<nav className="menu__inner">
+						<div className="menu__title">
+							<Link onClick={this.toggleMenu} to="app">RRReact</Link>
+						</div>
 						<div className="menu__items">
-							<Link to="app"><span>Home</span></Link>
-							<Link to="list" params={{id: 'popular'}}><span>Popular</span></Link>
-							<Link to="list" params={{id: 'everyone'}}><span>Everyone</span></Link>
-							<Link to="list" params={{id: 'debuts'}}><span>Debuts</span></Link>
+							<Link onClick={this.toggleMenu} to="list" params={{id: 'popular'}}>Popular</Link>
+							<Link onClick={this.toggleMenu} to="list" params={{id: 'everyone'}}>Everyone</Link>
+							<Link onClick={this.toggleMenu} to="list" params={{id: 'debuts'}}>Debuts</Link>
+							<a onClick={this.toggleMenu} href="#/error">Error</a>
 						</div>
 					</nav>
-					<button className="menu__close-button" id="closeButton" onClick={this.toggleMenu}>Close Menu</button>
+					<button className="menu__close-button" id="closeButton" onClick={this.toggleMenu}>
+						<i className="fa fa-close"></i>
+					</button>
 				</div>
+				<button className="menu__open-button animated moveDown" id="openButton" onClick={this.toggleMenu}>
+					<i className="fa fa-bars"></i>
+				</button>
 				<div className="bg" onClick={this.toggleMenu}></div>
-				<button className="menu__open-button" id="openButton" onClick={this.toggleMenu}>Open Menu</button>
 			</div>
 		);
-	},
-
-	/**
-	 * Update component when Store change
-	 */
-	_onStoreChange: function() {
-		this.setState(AppStore.getState());
 	}
 
 });
 
-module.exports = NavBar;
+module.exports = Navbar;
 

@@ -4,7 +4,6 @@ var del = require('del');
 var es = require('event-stream');
 var gutil = require('gulp-util');
 var spawn = require('child_process').spawn;
-
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*'],
 	replaceString: /\bgulp[\-.]/
@@ -19,6 +18,15 @@ var port = $.util.env.port || 1337;
 var src = './src/';
 var dist = './dist/';
 var bower = './bower_components/' ;
+
+var pkg = require('./package.json');
+var banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  ''].join('\n');
 
 // https://github.com/ai/autoprefixer
 var autoprefixerBrowsers = [                 
@@ -38,6 +46,7 @@ gulp.task('scripts', function() {
 		.pipe($.webpack(webpackConfig))
 		.pipe($.jshint())
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
+		// .pipe($.header(banner, { pkg : pkg } ))
 		.pipe(gulp.dest(dist + 'js/'))
 		.pipe($.size({ title : 'scripts' }))
 		.pipe($.duration('scripts'))
@@ -72,6 +81,7 @@ gulp.task('styles', function() {
 
 	return es.concat(gulp.src([
 		bower + 'fontawesome/css/font-awesome.min.css',
+		bower + 'animate-css/animate.min.css'
 	]), sassFiles)
 		.pipe($.concat('main.min.css'))
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
@@ -79,6 +89,7 @@ gulp.task('styles', function() {
 			log: true
 		}) : gutil.noop())
 		.pipe(isProduction ? $.cssmin() : gutil.noop())
+		// .pipe($.header(banner, { pkg : pkg } ))
 		.pipe(gulp.dest(dist +'css'))
 		.pipe($.size({ title : 'styles' }))
 		.pipe($.duration('styles'))
@@ -121,15 +132,9 @@ gulp.task('init', function() { 
 		.pipe(gulp.dest(dist)); 
 });
 
-// Auto reload gulpfile
-gulp.task('auto-reload', function() {
-	spawn('gulp', [], { stdio: 'inherit' });
-	process.exit();
-});
 
 // Watch sass, html and js file changes
 gulp.task('watch', function() {
-	gulp.watch('gulpfile.js', ['auto-reload']);
 	gulp.watch(src + 'index.html', ['html']);
 	gulp.watch(src + 'scss/**/**/*.scss', ['styles']);
 	gulp.watch(src + 'js/**/*.js', ['scripts']);
@@ -159,3 +164,17 @@ gulp.task('build', ['clean'], function() {
 		'scripts'
 	]);
 });
+
+// Auto reload Gulp task in progress
+// gulp.task('auto', function() {
+// 	var process;
+
+// 	function restart() {
+// 		if (process) {
+// 			process.kill();
+// 		}
+// 		process = spawn('gulp', ['default'], {stdio: 'inherit'});
+// 	}
+// 	gulp.watch('gulpfile.js', restart);
+// 	restart();
+// });
