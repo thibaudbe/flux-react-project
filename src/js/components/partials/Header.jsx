@@ -15,7 +15,7 @@ var Header = React.createClass({
 	 */
 	render: function() {
 		return (
-			<header className="header animated moveDown">
+			<header className="header">
 				<div className="header__inner">
 					<h1>{this.props.title}</h1>
 				</div>

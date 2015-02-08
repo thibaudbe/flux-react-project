@@ -9,7 +9,7 @@ var NotFound       = require('../pages/NotFound.jsx');
 var Navbar         = require('../partials/Navbar.jsx');
 var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
-// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Image          = require('../partials/Image.jsx');
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -35,22 +35,34 @@ var List = React.createClass({
 		}
 	},
 
+	updateViewport: function() {
+		this.setState({
+			viewport: {
+				top: window.pageYOffset,
+				height: window.innerHeight
+			}
+		});
+	},
+
 	renderShots: function() {
 		if (typeof(this.state.data.shots) !== 'undefined') {
+			var self = this;
 			var shots = this.state.data.shots;
 			var shotsNode = shots.map(function(shot, i) {
 				return (
 					<div key={i} className="col-3">
-						<div className="shot animated zoomIn">
+						<div className="shot">
 							<Link className="shot__link" to="shot" params={{id: shot.id}}>
-								<img width="400" height="300" src={shot.image_url}/>
+								<Image title={shot.title} image={shot.image_url} viewport={self.state.viewport} />
 							</Link>
-							<Link className="shot__player" to="player" params={{id: shot.player.username}}>
+							<div className="shot__player">
 								<figure className="img-avatar">
-									<img width="160" height="160" src={shot.player.avatar_url}/>
+									<Link to="player" params={{id: shot.player.username}}>
+										<img width="160" height="160" src={shot.player.avatar_url}/>
+									</Link>
 								</figure>
-								<span className="shot__player-name">by {shot.player.name}</span>
-							</Link>
+								<span className="shot__player-name">by <strong>{shot.player.name}</strong></span>
+							</div>
 						</div>
 					</div>
 				);
@@ -70,19 +82,13 @@ var List = React.createClass({
 
 		return (
 			<div className="list-page page">
-				
 				<Navbar />
-				
 				<Header title={this.props.id} />
-				
 				{loading}
-				
 				<div className="container">
 					{this.renderShots()}
 				</div>
-				
 				<Footer />
-			
 			</div>
 		);
 	},

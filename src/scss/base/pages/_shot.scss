@@ -36,7 +36,7 @@
 		float: left;
 		@include box-shadow(0, 2px, 2px, 0, rgba(0, 0, 0, 0.05));
 		border: 2px solid #fff;
-	  background: #fff;
+		background: #fff;
 	}
 
 	.info {
@@ -49,10 +49,10 @@
 		}
 		p {
 			font-size: .8em;
-		  color: #999;
+			color: #999;
 		}
 		a {
-		  color: #333;
+			color: #333;
 		}
 	}
 

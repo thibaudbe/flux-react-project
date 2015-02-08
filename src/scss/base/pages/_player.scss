@@ -42,6 +42,10 @@
 			margin: .4em 0 .2em;
 			text-align: center;
 
+			@media screen and (max-width: $mobile) {
+				margin: .8em 0 .4em;
+			}
+
 			span {
 				margin-right: 10px;
 				color: #999;

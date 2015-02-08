@@ -9,7 +9,7 @@ var NotFound       = require('../pages/NotFound.jsx');
 var Navbar         = require('../partials/Navbar.jsx');
 var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
-// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Image          = require('../partials/Image.jsx');
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -31,6 +31,15 @@ var Item = React.createClass({
 			AppActions.getShot(props);
 			this.setState({ data: [] });
 		}
+	},
+
+	updateViewport: function() {
+		this.setState({
+			viewport: {
+				top: window.pageYOffset,
+				height: window.innerHeight
+			}
+		});
 	},
 
 	renderPlayer: function() {
@@ -64,6 +73,7 @@ var Item = React.createClass({
 	render: function() {
 		var data = this.state.data;
 		var id = this.props.id;
+		var self = this;
 
 		var loading = data.length === 0 ? <Loading /> : '';
 
@@ -80,8 +90,8 @@ var Item = React.createClass({
 				</div>
 				<div className="container">
 					<div className="col-7">
-						<div className="shot animated zoomIn">
-							<img width="400" height="300" src={data.image_url} />
+						<div className="shot">
+							<Image title={data.title} image={data.image_url} viewport={self.state.viewport} />
 						</div>
 					</div>
 					<div className="col-5">

@@ -1,7 +1,7 @@
 
 /* Menu Button */
 .menu__open-button {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 70;
@@ -19,7 +19,7 @@
 
 /* Close Button */
 .menu__close-button {
-	position: absolute;
+	position: fixed;
 	right: 1em;
 	top: 1em;
 	background: transparent;
@@ -33,7 +33,7 @@
 
 /* Background */
 .bg {
-	position: absolute;
+	position: fixed;
 	background: black;
 	opacity: 0;
 	z-index: 1000;
@@ -46,14 +46,12 @@
 
 /* Menu */
 .menu {
-	position: absolute;
+	position: fixed;
 	z-index: 1001;
 	width: 300px;
 	height: 100%;
 	top: 0;
 	background: #fff;
-	// padding: 2.5em 1.5em 0;
-	// font-size: 1.15em;
 	@include transform(translate3d(-320px, 0, 0));
 	@include transition(transform 0.2s);
 	// @include transition-timing-function(ease-in-out);
@@ -86,8 +84,6 @@
 
 		a {
 			@include transition(transform 0s 0.2s);
-			// @include transition-timing-function(ease-in-out);
-			// @include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
 		}
 	}
 	.menu__items {

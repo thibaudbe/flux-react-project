@@ -9,7 +9,7 @@ var NotFound       = require('../pages/NotFound.jsx');
 var Navbar         = require('../partials/Navbar.jsx');
 var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
-// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Image          = require('../partials/Image.jsx');
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -33,15 +33,25 @@ var Player = React.createClass({
 		}
 	},
 
+	updateViewport: function() {
+		this.setState({
+			viewport: {
+				top: window.pageYOffset,
+				height: window.innerHeight
+			}
+		});
+	},
+
 	renderShots: function() {
 		if (typeof(this.state.data.shots) !== 'undefined') {
+			var self = this;
 			var shots = this.state.data.shots;
 			var shotsNode = shots.map(function(shot, i) {
 				return (
 					<div key={i} className="col-3">
-						<div className="shot animated zoomIn">
+						<div className="shot">
 							<Link className="shot__link" to="shot" params={{id: shot.id}}>
-								<img width="400" height="300" src={shot.image_url}/>
+								<Image title={shot.title} image={shot.image_url} viewport={self.state.viewport} />
 							</Link>
 							<p>
 								<span><i className="fa fa-heart"></i></span>{shot.likes_count}

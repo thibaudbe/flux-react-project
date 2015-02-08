@@ -6,6 +6,9 @@ var Router        = require('react-router');
 var RouteHandler  = Router.RouteHandler;
 var Link          = Router.Link;
 
+var EventEmitter  = require('events').EventEmitter;
+var menuEvents    = new EventEmitter();
+
 
 var Navbar = React.createClass({
 
@@ -15,7 +18,12 @@ var Navbar = React.createClass({
 		}
 	},
 
+	setMenuMode: function(menu){
+		menuEvents.emit('moveChange', menu);
+	},
+
 	toggleMenu: function(event) {
+		this.setMenuMode(this.state.menu);
 		this.setState({
 			menu: !this.state.menu
 		});
@@ -45,7 +53,7 @@ var Navbar = React.createClass({
 						<i className="fa fa-close"></i>
 					</button>
 				</div>
-				<button className="menu__open-button animated moveDown" id="openButton" onClick={this.toggleMenu}>
+				<button className="menu__open-button animated zoomIn" id="openButton" onClick={this.toggleMenu}>
 					<i className="fa fa-bars"></i>
 				</button>
 				<div className="bg" onClick={this.toggleMenu}></div>
@@ -56,4 +64,20 @@ var Navbar = React.createClass({
 });
 
 module.exports = Navbar;
+
+// Menu Move events
+menuEvents.on('moveChange', function(menu){
+	var html = document.querySelector('html');
+	var body = document.querySelector('body');
+	var classFix = 'fixed';
+
+	if (menu) {
+		if (html.classList.contains(classFix) && body.classList.contains(classFix))
+			html.classList.remove(classFix);
+			body.classList.remove(classFix);
+	} else {
+		html.className += ' '+ classFix +' ';
+		body.className += ' '+ classFix +' ';
+	}
+});
 

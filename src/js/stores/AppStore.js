@@ -12,7 +12,10 @@ var CHANGE_EVENT = 'change';
 
 var _state = {
 	loading: false,
-	menu: false,
+	viewport: {
+		top: 0,
+		height: 0
+	},
 	id: null,
 	data: []
 };

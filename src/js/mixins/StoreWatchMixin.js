@@ -44,6 +44,10 @@ var StoreWatchMixin = {
 	componentDidMount: function() {
 		AppStore.addChangeListener(this._onStoreChange);
 
+		window.addEventListener('scroll', this.updateViewport, false);
+		window.addEventListener('resize', this.updateViewport, false);
+		this.updateViewport();
+
 		// console.log('Page : state', this.state);
 		// console.log('Page : props', this.props);
 		// console.log('Page : DOM', this.getDOMNode());
@@ -57,6 +61,9 @@ var StoreWatchMixin = {
 	 */
 	componentWillUnmount: function(){
 		AppStore.removeChangeListener(this._onStoreChange);
+
+		window.removeEventListener('scroll', this.updateViewport);
+		window.removeEventListener('resize', this.updateViewport);
 	}
 
 };
