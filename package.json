@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/thibaudbe/flux-react-project",
   "dependencies": {
+    "bower": "^1.3.12",
     "del": "^0.1.3",
     "event-stream": "^3.2.2",
     "flux": "^2.0.1",
