@@ -109,7 +109,7 @@ gulp.task('serve', function() {
 
 // Copy images
 gulp.task('images', function(cb) {
-	return gulp.src(src + 'images/**/*.{png,jpg,jpeg,gif}')
+	return gulp.src(src + 'images/**/*.{png,jpg,jpeg,gif,svg}')
 		.pipe($.size({ title : 'images' }))
 		.pipe($.duration('images'))
 		.pipe(gulp.dest(dist + 'images/'));

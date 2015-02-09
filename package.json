@@ -26,6 +26,7 @@
     "gulp-webpack": "^0.4.1"
   },
   "dependencies": {
+    "express": "^4.11.2",
     "flux": "*",
     "jquery": "*",
     "jsx-loader": "^0.12.2",
@@ -39,7 +40,9 @@
     "react-router": "^0.11.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "postinstall": "node node_modules/.bin/gulp --type production"
   },
   "author": "",
   "license": "ISC"
