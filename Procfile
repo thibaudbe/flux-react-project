@@ -1,1 +1,1 @@
-web: node gulp --type production
+web: gulp --type production

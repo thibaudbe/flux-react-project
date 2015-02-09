@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A Flux and Reactjs project.",
   "main": "server.js",
+  "engines": {
+    "node": "0.10.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/thibaudbe/flux-react-project.git"
@@ -45,8 +48,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "postinstall": "node node_modules/.bin/gulp --type production"
+    "start": "gulp --type production"
   },
   "author": "Thibaud B.",
   "license": "ISC"
