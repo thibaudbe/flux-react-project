@@ -11,6 +11,7 @@ var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
 var ImageLoader    = require('react-imageloader');
 
+var Progress       = require('react-progressbar');
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
 var RouteHandler   = Router.RouteHandler;
@@ -91,6 +92,7 @@ var Player = React.createClass({
 
 		return (
 			<div className="player-page">
+				<Progress color="#005740" completed={this.state.completed} />
 				<Navbar />
 				<Header title="player" />
 				{loading}

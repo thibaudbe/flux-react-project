@@ -10,7 +10,7 @@ var Router        = require('react-router');
 
 // Router.HistoryLocation, 
 Router.run(routes, function(Handler, state) {
-	loadingEvents.emit('loadStart');
+	// loadingEvents.emit('loadStart');
   React.render(
     <Handler params={state.params}/>, 
     document.body

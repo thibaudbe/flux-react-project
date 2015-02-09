@@ -45,6 +45,7 @@ var StoreWatchMixin = {
 	componentDidMount: function() {
 		AppStore.addChangeListener(this._onStoreChange);
 
+
 		loadingEvents.on('loadStart', function() {
 			// this.setState({ loading: true });
 			// console.log('hello')
@@ -63,6 +64,7 @@ var StoreWatchMixin = {
 		// console.log('Page : Version', React.version);
 		
 		this.getData(this.props.id);
+		this.updateCompleted();
 	},
 
 	/**

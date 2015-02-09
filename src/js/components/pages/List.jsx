@@ -11,6 +11,7 @@ var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
 var ImageLoader    = require('react-imageloader');
 
+var Progress       = require('react-progressbar');
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
 var RouteHandler   = Router.RouteHandler;
@@ -31,6 +32,7 @@ var List = React.createClass({
 		if (props && props !== meta.id) {
 			console.log('=> View => Actions :', props);
 			AppActions.getList(props);
+			this.updateCompleted();
 			this.setState({ data: [] });
 		}
 	},
@@ -41,6 +43,10 @@ var List = React.createClass({
 			this.setState({ loading: true });
 		else
 			this.setState({ loading: false });
+	},
+
+	updateCompleted: function() {
+		return this.setState({ completed: 100 });
 	},
 
 	renderShots: function() {
@@ -76,20 +82,19 @@ var List = React.createClass({
 		var data = this.state.data;
 		var id = this.state.id;
 
-		// GROS PROBLEME DE CALCUL AU SCROLL !!! 
-		// LAZYLOADER POURRI ???
-		// console.log('loading', this.state.loading);
+		console.log('completed', this.state.completed);
 
 		var loading = data.length === 0 ? <Loading /> : '';
 
 		if (id == 'error') 
 			return <NotFound/>
 
+				// {loading}
 		return (
 			<div className="list-page page">
+				<Progress color="#005740" completed={this.state.completed} />
 				<Navbar />
 				<Header title={this.props.id} />
-				{loading}
 				<div className="container">
 					{this.renderShots()}
 				</div>

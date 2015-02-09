@@ -11,6 +11,7 @@ var assign 				= require('object-assign');
 var CHANGE_EVENT = 'change';
 
 var _state = {
+	completed: 0,
 	loading: false,
 	viewport: {
 		top: 0,

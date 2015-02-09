@@ -82,3 +82,20 @@
 		color: #ddd;
 	}
 }
+
+
+// ProgressBar
+.progressbar-container {
+	position: fixed !important;
+	height: 3px;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+	width: 100%;
+	position: relative;
+
+	.progressbar-progress {
+		height: 3px !important;
+	}
+}
+
