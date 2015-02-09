@@ -41,35 +41,31 @@ var autoprefixerBrowsers = [
 	'bb >= 10'
 ];
 
+
 gulp.task('scripts', function() {
 	return gulp.src(webpackConfig.entry)
 		.pipe($.webpack(webpackConfig))
 		.pipe($.jshint())
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
-		// .pipe($.header(banner, { pkg : pkg } ))
+		// .pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
 		.pipe(gulp.dest(dist + 'js/'))
 		.pipe($.size({ title : 'scripts' }))
-		.pipe($.duration('scripts'))
-		.pipe($.connect.reload());
+		.pipe(isProduction ? gutil.noop() : $.duration('scripts'))
+		.pipe(isProduction ? gutil.noop() : $.connect.reload());
 });
 
 // Copy html from src to dist + minify
 gulp.task('html', function() {
 	return gulp.src(src + 'index.html')
-		.pipe($.minifyHtml({
-			comments: true,
-			spare: true
-		}))
+		.pipe(isProduction ? $.minifyHtml({comments: true, spare: true}) : gutil.noop())
 		.pipe(gulp.dest(dist))
 		.pipe($.size({ title : 'html' }))
-		.pipe($.duration('html'))
-		.pipe($.connect.reload());
+		.pipe(isProduction ? gutil.noop() : $.duration('html'))
+		.pipe(isProduction ? gutil.noop() : $.connect.reload());
 });
 
 // Compile styles using Bourbon & Neat
 gulp.task('styles', function() {
-
-	// var sassFiles = gulp.src(src +'scss/main.scss')
 	var sassFiles = $.rubySass(src +'scss/main.scss', {
 			style: 'compressed',
 			sourcemap: false, 
@@ -80,8 +76,8 @@ gulp.task('styles', function() {
 		});
 
 	return es.concat(gulp.src([
-		bower + 'fontawesome/css/font-awesome.min.css',
-		bower + 'animate-css/animate.min.css'
+		bower + 'fontawesome/css/font-awesome.css',
+		bower + 'animate-css/animate.css'
 	]), sassFiles)
 		.pipe($.concat('main.min.css'))
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
@@ -89,11 +85,11 @@ gulp.task('styles', function() {
 			log: true
 		}) : gutil.noop())
 		.pipe(isProduction ? $.cssmin() : gutil.noop())
-		// .pipe($.header(banner, { pkg : pkg } ))
+		// .pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
 		.pipe(gulp.dest(dist +'css'))
 		.pipe($.size({ title : 'styles' }))
-		.pipe($.duration('styles'))
-		.pipe($.connect.reload());
+		.pipe(isProduction ? gutil.noop() : $.duration('styles'))
+		.pipe(isProduction ? gutil.noop() : $.connect.reload());
 });
 
 // Add livereload on the given port
@@ -108,9 +104,9 @@ gulp.task('serve', function() {
 // Copy images
 gulp.task('images', function(cb) {
 	return gulp.src(src + 'images/**/*.{png,jpg,jpeg,gif,svg}')
-		.pipe($.size({ title : 'images' }))
-		.pipe($.duration('images'))
-		.pipe(gulp.dest(dist + 'images/'));
+		.pipe(gulp.dest(dist + 'images/'))
+		.pipe(isProduction ? gutil.noop() : $.size({ title : 'images' }))
+		.pipe(isProduction ? gutil.noop() : $.duration('images'));
 });
 
 // Copy icons
