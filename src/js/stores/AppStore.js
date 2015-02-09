@@ -13,10 +13,6 @@ var CHANGE_EVENT = 'change';
 var _state = {
 	completed: 0,
 	loading: false,
-	viewport: {
-		top: 0,
-		height: 0
-	},
 	id: null,
 	data: []
 };

@@ -1,7 +1,6 @@
 'use strict';
 
 var React 				 = require('react');
-var Footer         = require('../partials/Footer.jsx');
 
 var DocumentTitle  = require('react-document-title');
 var Router         = require('react-router');
@@ -17,10 +16,7 @@ var Index = React.createClass({
 	render: function() {
 		return (
 			<DocumentTitle title="RRReact">
-				<div className="home-page page">
-					<div className="logo animated moveDown">
-						<h1>R</h1>
-					</div>
+				<div className="page home-page">
 					<ul className="home__title">
 						<li><Link to="list" params={{id: 'popular'}}>
 							<span className="animated zoomIn">Popular</span></Link>
@@ -32,7 +28,6 @@ var Index = React.createClass({
 							<span className="animated zoomIn">Debuts</span></Link>
 						</li>
 					</ul>
-					<Footer />
 				</div>
 			</DocumentTitle>
 		);

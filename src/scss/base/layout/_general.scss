@@ -1,49 +1,24 @@
 
-html, body {
-	margin: 0;
-	height: 100%;
-	width: 100%;
-
-	&.fixed {
-		// overflow: hidden;
-
-		.page {
-			overflow-y: scroll;
-			-webkit-overflow-scrolling: touch;
-		}
-	}
+*, *::after, *::before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.wrap {
-	height: 100%;
+html, body {
+	margin: 0;
+	padding: 0;
 }
 
 .page {
-	height: 100%;
-}
-
-
-// Page transition example
-.example-enter {
-	opacity: 0.00;
-	transition: opacity .5s ease-in;
-
-	&.example-enter-active {
-		opacity: 1;
-	}
-}
-
-.example-leave {
-	transition: opacity .5s ease-in;
-
-	.example-leave-active {
-		opacity: 0.00;
-	}
+	// overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 
 // General values
 img {
+	border: none;
 	width: 100%;
 	height: auto;
 	display: block;
@@ -55,6 +30,11 @@ img {
 
 .text-center {
 	text-align: center;
+}
+
+.hidden {
+	visibility: hidden !important;
+	display: none !important;
 }
 
 .go-back {

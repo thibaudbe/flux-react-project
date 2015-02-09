@@ -15,20 +15,21 @@ var Footer = React.createClass({
 	render: function() {
 		var year = new Date().getFullYear();
 
+		var page = this.props.page;
+		var classname = page.logo ? 'footer is-home' : 'footer';
+
 		return (
-			<div className="footer animated moveUp">
-				<div className="container">
-					<div className="footer__inner">
-						<div className="col-6">
-							<p>© RRReact {year}. MIT licensed.</p>
-						</div>
-						<div className="col-6">
-							<p className="text-right">
-								<a href="https://github.com/thibaudbe/flux-react-project" target="_blank">More about this project</a>
-								&nbsp;by&nbsp;
-								<a href="http://thibaudb.com" target="_blank">Thibaud B.</a>
-							</p>
-						</div>
+			<div className={classname}>
+				<div className="footer__inner">
+					<div className="col-6">
+						<p>© RRReact {year}. MIT licensed.</p>
+					</div>
+					<div className="col-6">
+						<p className="text-right">
+							<a href="https://github.com/thibaudbe/flux-react-project" target="_blank">A project</a>
+							&nbsp;by&nbsp;
+							<a href="http://thibaudb.com" target="_blank">Thibaud B.</a>
+						</p>
 					</div>
 				</div>
 			</div>

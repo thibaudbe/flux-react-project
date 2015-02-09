@@ -29,7 +29,7 @@
 @include keyframes(lazyImg) {
 	from {
 		opacity: 0;
-		@include transform(scale3d(.3, .3, .3));
+		// @include transform(scale3d(.3, .3, .3));
 	}
 	to {
 		opacity: 1;

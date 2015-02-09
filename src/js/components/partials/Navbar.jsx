@@ -35,12 +35,18 @@ var Navbar = React.createClass({
 	render: function() {
 		var menuClass = this.state.menu ? 'show-menu' : '';
 
+		var page = this.props.page;
+		var classname = page.logo ? 'menu__open-button hidden' : 'menu__open-button';
+
 		return (
 			<div id="navigation" role="navigation" className={menuClass}>
 				<div className="menu">
 					<nav className="menu__inner">
 						<div className="menu__title">
 							<Link onClick={this.toggleMenu} to="app">RRReact</Link>
+							<button className="menu__close-button" id="closeButton" onClick={this.toggleMenu}>
+								<i className="fa fa-close"></i>
+							</button>
 						</div>
 						<div className="menu__items">
 							<Link onClick={this.toggleMenu} to="list" params={{id: 'popular'}}>Popular</Link>
@@ -49,11 +55,8 @@ var Navbar = React.createClass({
 							<a onClick={this.toggleMenu} href="#/error">Error</a>
 						</div>
 					</nav>
-					<button className="menu__close-button" id="closeButton" onClick={this.toggleMenu}>
-						<i className="fa fa-close"></i>
-					</button>
 				</div>
-				<button className="menu__open-button animated zoomIn" id="openButton" onClick={this.toggleMenu}>
+				<button className={classname} id="openButton" onClick={this.toggleMenu}>
 					<i className="fa fa-bars"></i>
 				</button>
 				<div className="bg" onClick={this.toggleMenu}></div>

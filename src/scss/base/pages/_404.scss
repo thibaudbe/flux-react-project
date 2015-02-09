@@ -4,6 +4,7 @@
 	background-size: cover;
 	width: 100%;
 	display: table;
+	@extend .full-size-style;
 
 	.error__inner {
 		height: 100%;

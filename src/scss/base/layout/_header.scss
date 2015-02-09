@@ -5,13 +5,35 @@
 	width: 100%;
 	z-index: 61;
 
+	&.is-home {
+		.header__inner {
+			background: transparent !important;
+			color: #999 !important;	
+		}
+	}
 
 	.header__inner {
+		@include transition-property(color, background);
+		@include transition-duration(0.8s);
+		@include transition-timing-function(ease-in-out);
+
 		@extend .head-page-style;
 		padding: 25px 0 25px 85px;
+		position: relative;
+
+		// img
+		.logo {
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			top: 19px;
+			left: 24px;
+			@include user-select(none);
+		}
 
 		h1 {
 			margin: 0;
+			height: 19px;
 		}
 	
 	}

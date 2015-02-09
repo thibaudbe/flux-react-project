@@ -6,11 +6,8 @@ var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
 var NotFound       = require('../pages/NotFound.jsx');
-var Navbar         = require('../partials/Navbar.jsx');
-var Header         = require('../partials/Header.jsx');
-var Footer         = require('../partials/Footer.jsx');
-var ImageLoader    = require('react-imageloader');
 
+var ImageLoader    = require('react-imageloader');
 var Progress       = require('react-progressbar');
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -30,8 +27,27 @@ var Item = React.createClass({
 		if (props && props !== meta.id) {
 			console.log('=> View => Actions :', props);
 			AppActions.getShot(props);
+			this.updateCompleted();
 			this.setState({ data: [] });
 		}
+	},
+
+	cleanHTML: function(html) {
+		return html
+			.replace('<p>', '')
+			.replace('</p>', '')
+			.replace('<p>', '')
+			.replace('</p>', '')
+			.replace('<a>', '')
+			.replace('</a>', '')
+			.replace('<i>', '')
+			.replace('</i>', '')
+			.replace('<b>', '')
+			.replace('</b>', '');
+	},
+
+	updateCompleted: function() {
+		return this.setState({ completed: 100 });
 	},
 
 	renderPlayer: function() {
@@ -72,18 +88,18 @@ var Item = React.createClass({
 		if (id == 'error') 
 			return <NotFound/>
 
+		var description = data.description ? this.cleanHTML(data.description) : null;
+			
 		return (
-			<div className="shot-page page">
+			<div className="page shot-page">
 				<Progress color="#005740" completed={this.state.completed} />
-				<Navbar />
-				<Header title="shot" />
 				{loading}
 				<div className="player">
 					{this.renderPlayer()}
 				</div>
 				<div className="container">
 					<div className="col-7">
-						<div className="shot">
+						<div className="shot animated fadeInLeft">
 							<div className="shot__image">
 								<ImageLoader title={data.title} src={data.image_url}>
 								  failed
@@ -92,7 +108,7 @@ var Item = React.createClass({
 						</div>
 					</div>
 					<div className="col-5">
-						<div className="stats">
+						<div className="stats animated fadeInRight">
 							<ul>
 								<li>{data.likes_count}<span><i className="fa fa-heart"></i></span></li>
 								<li>{data.views_count}<span><i className="fa fa-eye"></i></span></li>
@@ -100,12 +116,11 @@ var Item = React.createClass({
 								<li>{data.rebounds_count}<span><i className="fa fa-reply"></i></span></li>
 							</ul>
 						</div>
-						<div>
-							<p>{data.description}</p>
+						<div className="info animated fadeInRight">
+							<p>{description}</p>
 						</div>
 					</div>
 				</div>
-				<Footer />
 			</div>
 		);
 	},

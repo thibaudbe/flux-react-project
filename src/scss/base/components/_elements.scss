@@ -22,6 +22,15 @@
 	margin-bottom: 20px;
 }
 
+.full-size-style {
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+
 // LazyLoad
 .pending {
 	display: block;
@@ -96,6 +105,25 @@
 
 	.progressbar-progress {
 		height: 3px !important;
+	}
+}
+
+
+// Page transition example
+.example-enter {
+	opacity: 0.00;
+	transition: opacity .5s ease-in;
+
+	&.example-enter-active {
+		opacity: 1;
+	}
+}
+
+.example-leave {
+	transition: opacity .5s ease-in;
+
+	.example-leave-active {
+		opacity: 0.00;
 	}
 }
 

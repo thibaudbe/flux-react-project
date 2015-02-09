@@ -1,5 +1,6 @@
 
 .footer {
+	padding: 0 20px;
 
 	.footer__inner {
 		margin: 35px 0 80px;
@@ -16,6 +17,25 @@
 
 			a {
 				color: #8E8E8E;
+				font-weight: bold;
+			}
+		}
+	}
+
+	&.is-home {
+		@extend .footer-page-style;
+
+		.footer__inner {
+			border: none;
+			margin-top: 0;
+		}
+
+		p {
+			font-size: .8em;
+			color: #D0D0D0;
+
+			a {
+				color: #fff;
 				font-weight: bold;
 			}
 		}

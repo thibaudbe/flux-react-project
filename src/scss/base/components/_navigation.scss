@@ -19,7 +19,7 @@
 
 /* Close Button */
 .menu__close-button {
-	position: fixed;
+	position: absolute;
 	right: 1em;
 	top: 1em;
 	background: transparent;
@@ -60,7 +60,7 @@
 
 	.menu__title {
 		@extend .head-page-style;
-		// padding: 25px 0 25px 35px;
+		position: relative;
 		padding: 23px 0 22px 35px;
 
 		a {

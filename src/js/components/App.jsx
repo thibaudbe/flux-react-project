@@ -3,9 +3,9 @@
 var React 				= require('react');
 var AppStore 			= require('../stores/AppStore');
 var AppActions    = require('../actions/AppActions');
-// var Header        = require('./partials/Header.jsx');
-// var Navbar        = require('./partials/Navbar.jsx');
-// var Footer        = require('./partials/Footer.jsx');
+var Header        = require('./partials/Header.jsx');
+var Navbar        = require('./partials/Navbar.jsx');
+var Footer        = require('./partials/Footer.jsx');
 // var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 
 var DocumentTitle	= require('react-document-title');
@@ -19,8 +19,49 @@ var App = React.createClass({
 
 	mixins: [Router.State],
 	
-	lettrine: function (str) {
+	lettrine: function(str) {
 		return isNaN(str) ? str.charAt(0).toUpperCase() + str.slice(1) : 'Single shot';
+	},
+
+	pageTitle: function(props) {
+		var page = {
+			home: {
+				title: 'RRReact',
+				logo: true,
+			},
+			everyone: {
+				title: 'All last shots',
+				logo: false,
+			},
+			debuts: {
+				title: 'First shots',
+				logo: false,
+			},
+			popular: {
+				title: 'The most popular shots',
+				logo: false,
+			},
+			shot: {
+				title: 'Single shot',
+				logo: false,
+			},
+			player: {
+				title: 'Single player',
+				logo: false,
+			},
+			error: {
+				title: 'Somethings\' wrong',
+				logo: false,
+			}
+		};
+
+		if (props.params.id === undefined) return page.home;
+		else if (props.params.id === 'everyone') return page.everyone;
+		else if (props.params.id === 'debuts') return page.debuts;
+		else if (props.params.id === 'popular') return page.popular;
+		else if (props.path.indexOf('/shot/') > -1) return page.shot;
+		else if (props.path.indexOf('/player/') > -1) return page.player;
+		else return page.home;
 	},
 
 	/**
@@ -28,10 +69,6 @@ var App = React.createClass({
 	 */
 	render: function() {
 		var title = this.props.params.id ? this.lettrine(this.props.params.id) : '';
-		var name = this.getRoutes().reverse()[0].name;
-		// var home = this.props.params.id ? this.props.params.id : null;
-		// var header = this.props.params.id ? <Header title={title} /> : '';
-		// var footer = this.props.params.id ? <Footer /> : '';
 
 		// <TransitionGroup component="div" transitionName="example">
 		// 	<RouteHandler {...this.props.params} key={name}/>
@@ -39,7 +76,12 @@ var App = React.createClass({
 		
 		return (
 			<DocumentTitle title={'RRReact | '+ title || 'Untitled'}>
-				<RouteHandler {...this.props.params} />
+				<div className="wrap">
+					<Navbar page={ this.pageTitle(this.props) } />
+					<Header page={ this.pageTitle(this.props) } />
+					<RouteHandler {...this.props.params} />
+					<Footer page={ this.pageTitle(this.props) } />
+				</div>
 			</DocumentTitle>
 		);
 	}

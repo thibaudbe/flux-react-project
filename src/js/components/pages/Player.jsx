@@ -6,11 +6,8 @@ var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
 var NotFound       = require('../pages/NotFound.jsx');
-var Navbar         = require('../partials/Navbar.jsx');
-var Header         = require('../partials/Header.jsx');
-var Footer         = require('../partials/Footer.jsx');
-var ImageLoader    = require('react-imageloader');
 
+var ImageLoader    = require('react-imageloader');
 var Progress       = require('react-progressbar');
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -30,8 +27,13 @@ var Player = React.createClass({
 		if (props && props !== meta.id) {
 			console.log('=> View => Actions :', props);
 			AppActions.getPlayer(props);
+			this.updateCompleted();
 			this.setState({ data: [] });
 		}
+	},
+
+	updateCompleted: function() {
+		return this.setState({ completed: 100 });
 	},
 
 	renderShots: function() {
@@ -91,10 +93,8 @@ var Player = React.createClass({
 			return <NotFound/>
 
 		return (
-			<div className="player-page">
+			<div className="page player-page">
 				<Progress color="#005740" completed={this.state.completed} />
-				<Navbar />
-				<Header title="player" />
 				{loading}
 				<div className="player">
 					{this.renderPlayer()}
@@ -105,7 +105,6 @@ var Player = React.createClass({
 				<div className="container">
 					{this.renderShots()}
 				</div>
-				<Footer />
 			</div>
 		);
 	},

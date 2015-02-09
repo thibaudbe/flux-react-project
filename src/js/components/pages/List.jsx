@@ -6,19 +6,13 @@ var AppStore       = require('../../stores/AppStore');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Loading 			 = require('../partials/Loading.jsx');
 var NotFound       = require('../pages/NotFound.jsx');
-var Navbar         = require('../partials/Navbar.jsx');
-var Header         = require('../partials/Header.jsx');
-var Footer         = require('../partials/Footer.jsx');
-var ImageLoader    = require('react-imageloader');
 
+var ImageLoader    = require('react-imageloader');
 var Progress       = require('react-progressbar');
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
 var RouteHandler   = Router.RouteHandler;
 var Link           = Router.Link;
-
-// var EventEmitter = require('events').EventEmitter;
-// var loadingEvents = new EventEmitter();
 
 
 var List = React.createClass({
@@ -37,13 +31,13 @@ var List = React.createClass({
 		}
 	},
 
-	updateLoading: function(bool) {
-		console.log('bool', bool);
-		if (bool == true) 
-			this.setState({ loading: true });
-		else
-			this.setState({ loading: false });
-	},
+	// updateLoading: function(bool) {
+	// 	console.log('bool', bool);
+	// 	if (bool == true) 
+	// 		this.setState({ loading: true });
+	// 	else
+	// 		this.setState({ loading: false });
+	// },
 
 	updateCompleted: function() {
 		return this.setState({ completed: 100 });
@@ -82,23 +76,18 @@ var List = React.createClass({
 		var data = this.state.data;
 		var id = this.state.id;
 
-		console.log('completed', this.state.completed);
-
 		var loading = data.length === 0 ? <Loading /> : '';
 
 		if (id == 'error') 
 			return <NotFound/>
 
-				// {loading}
 		return (
-			<div className="list-page page">
+			<div className="page list-page">
 				<Progress color="#005740" completed={this.state.completed} />
-				<Navbar />
-				<Header title={this.props.id} />
+				{loading}
 				<div className="container">
 					{this.renderShots()}
 				</div>
-				<Footer />
 			</div>
 		);
 	},

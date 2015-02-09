@@ -45,18 +45,13 @@ var StoreWatchMixin = {
 	componentDidMount: function() {
 		AppStore.addChangeListener(this._onStoreChange);
 
+		// loadingEvents.on('loadStart', function() {
+		// 	this.updateLoading(true);
+		// });
 
-		loadingEvents.on('loadStart', function() {
-			// this.setState({ loading: true });
-			// console.log('hello')
-		});
-		// this.updateLoading();
-
-		loadingEvents.on('loadEnd', function() {
-			// this.setState({ loading: false });
-			// console.log('world')
-			// this.updateLoading();
-		});
+		// loadingEvents.on('loadEnd', function() {
+		// 	this.updateLoading(false);
+		// });
 
 		// console.log('Page : state', this.state);
 		// console.log('Page : props', this.props);
