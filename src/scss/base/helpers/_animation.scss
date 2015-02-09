@@ -1,0 +1,37 @@
+
+// Animation
+.moveDown {
+	@include animation-name(moveDown);
+}
+
+@include keyframes(moveDown) {
+	from {
+		@include transform(translate3d(0, -100%, 0));
+	}
+	to {
+		@include transform(none);
+	}
+}
+
+.moveUp {
+	@include animation-name(moveUp);
+}
+
+@include keyframes(moveUp) {
+	from {
+		@include transform(translate3d(0, 100%, 0));
+	}
+	to {
+		@include transform(none);
+	}
+}
+
+@include keyframes(lazyImg) {
+	from {
+		opacity: 0;
+		@include transform(scale3d(.3, .3, .3));
+	}
+	to {
+		opacity: 1;
+	}
+}

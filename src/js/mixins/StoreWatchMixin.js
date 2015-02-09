@@ -3,6 +3,7 @@
 var React          = require('react');
 var AppStore 			 = require('../stores/AppStore');
 var AppActions     = require('../actions/AppActions');
+var loadingEvents  = require('../mixins/LoadEvents'); 
 
 
 var StoreWatchMixin = {
@@ -44,9 +45,17 @@ var StoreWatchMixin = {
 	componentDidMount: function() {
 		AppStore.addChangeListener(this._onStoreChange);
 
-		window.addEventListener('scroll', this.updateViewport, false);
-		window.addEventListener('resize', this.updateViewport, false);
-		this.updateViewport();
+		loadingEvents.on('loadStart', function() {
+			// this.setState({ loading: true });
+			// console.log('hello')
+		});
+		// this.updateLoading();
+
+		loadingEvents.on('loadEnd', function() {
+			// this.setState({ loading: false });
+			// console.log('world')
+			// this.updateLoading();
+		});
 
 		// console.log('Page : state', this.state);
 		// console.log('Page : props', this.props);
@@ -61,9 +70,6 @@ var StoreWatchMixin = {
 	 */
 	componentWillUnmount: function(){
 		AppStore.removeChangeListener(this._onStoreChange);
-
-		window.removeEventListener('scroll', this.updateViewport);
-		window.removeEventListener('resize', this.updateViewport);
 	}
 
 };

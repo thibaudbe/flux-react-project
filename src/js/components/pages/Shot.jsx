@@ -9,7 +9,7 @@ var NotFound       = require('../pages/NotFound.jsx');
 var Navbar         = require('../partials/Navbar.jsx');
 var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
-var Image          = require('../partials/Image.jsx');
+var ImageLoader    = require('react-imageloader');
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -33,15 +33,6 @@ var Item = React.createClass({
 		}
 	},
 
-	updateViewport: function() {
-		this.setState({
-			viewport: {
-				top: window.pageYOffset,
-				height: window.innerHeight
-			}
-		});
-	},
-
 	renderPlayer: function() {
 		if (typeof(this.state.data.player) !== 'undefined') {
 			var player = this.state.data.player;
@@ -63,7 +54,7 @@ var Item = React.createClass({
 						</div>
 					</div>
 					<div className="col-3">
-						<div className="text-right" onClick={() => this.goBack()}>Back</div>
+						<div className="text-right go-back" onClick={() => this.goBack()}>Back</div>
 					</div>
 				</div>
 			);
@@ -91,7 +82,11 @@ var Item = React.createClass({
 				<div className="container">
 					<div className="col-7">
 						<div className="shot">
-							<Image title={data.title} image={data.image_url} viewport={self.state.viewport} />
+							<div className="shot__image">
+								<ImageLoader title={data.title} src={data.image_url}>
+								  failed
+								</ImageLoader>
+							</div>
 						</div>
 					</div>
 					<div className="col-5">

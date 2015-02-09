@@ -6,7 +6,7 @@ var AppActions    = require('../actions/AppActions');
 // var Header        = require('./partials/Header.jsx');
 // var Navbar        = require('./partials/Navbar.jsx');
 // var Footer        = require('./partials/Footer.jsx');
-var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
+// var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 
 var DocumentTitle	= require('react-document-title');
 var Router 				= require('react-router');

@@ -1,0 +1,84 @@
+
+// General
+.head-page-style {
+	background: $menu;
+	color: #fff;
+	text-transform: capitalize;
+}
+
+.footer-page-style {
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.paper-style {
+	background: #fff;
+	padding: 5px;
+	@include border-radius(4px);
+	@include box-shadow(0, 0, 5px, -1px, rgba(0,0,0,.2));
+	margin-bottom: 20px;
+}
+
+// LazyLoad
+.pending {
+	display: block;
+	width: 100%;
+	padding-bottom: 75%; /* 4:3 */
+	position: relative;
+
+	&::before {
+		content:  "\f03e";
+		position: absolute;
+		font-family: FontAwesome;
+		font-style: normal;
+		font-weight: normal;
+		text-decoration: inherit;
+		top: 50%;
+		margin-top: -10%;
+		left: 0;
+		display: block;
+		width: 100%;
+		text-align: center;
+		font-size: 2em;
+		color: #ddd;
+	}
+}
+
+.loaded {
+	img {
+		-webkit-animation-duration: 1s;
+		animation-duration: 1s;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+		-webkit-animation-name: lazyImg;
+		animation-name: lazyImg;
+	}
+}
+
+.failed {
+	display: block;
+	width: 100%;
+	padding-bottom: 75%; /* 4:3 */
+	position: relative;
+	background: #F7F7F7;
+
+	&::before {
+		content: "\f127";
+		position: absolute;
+		font-family: FontAwesome;
+		font-style: normal;
+		font-weight: normal;
+		text-decoration: inherit;
+		top: 50%;
+		margin-top: -10%;
+		left: 0;
+		display: block;
+		width: 100%;
+		text-align: center;
+		font-size: 2em;
+		color: #ddd;
+	}
+}

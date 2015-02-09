@@ -9,7 +9,7 @@ var NotFound       = require('../pages/NotFound.jsx');
 var Navbar         = require('../partials/Navbar.jsx');
 var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
-var Image          = require('../partials/Image.jsx');
+var ImageLoader    = require('react-imageloader');
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
@@ -33,15 +33,6 @@ var Player = React.createClass({
 		}
 	},
 
-	updateViewport: function() {
-		this.setState({
-			viewport: {
-				top: window.pageYOffset,
-				height: window.innerHeight
-			}
-		});
-	},
-
 	renderShots: function() {
 		if (typeof(this.state.data.shots) !== 'undefined') {
 			var self = this;
@@ -51,7 +42,9 @@ var Player = React.createClass({
 					<div key={i} className="col-3">
 						<div className="shot">
 							<Link className="shot__link" to="shot" params={{id: shot.id}}>
-								<Image title={shot.title} image={shot.image_url} viewport={self.state.viewport} />
+								<ImageLoader title={shot.title} src={shot.image_url}>
+								  failed
+								</ImageLoader>
 							</Link>
 							<p>
 								<span><i className="fa fa-heart"></i></span>{shot.likes_count}
@@ -73,11 +66,14 @@ var Player = React.createClass({
 				<div className="player__card page">
 					<div className="player__banner animated moveDown"></div>
 					<div className="player__info">
-						<figure className="img-avatar animated zoomIn">
-							<img width="160" height="160" src={player.avatar_url}/>
-						</figure>
-						<h2 className="animated fadeInLeft">{player.name}</h2>
-						<p className="animated fadeInRight"><i className="fa fa-map-marker"></i> {player.location}</p>
+						<div className="container">
+							<figure className="img-avatar animated zoomIn">
+								<img width="160" height="160" src={player.avatar_url}/>
+							</figure>
+							<h2 className="animated fadeInLeft">{player.name}</h2>
+							<p className="animated fadeInRight"><i className="fa fa-map-marker"></i> {player.location}</p>
+							<div className="text-right go-back" onClick={() => this.goBack()}>Back</div>
+						</div>
 					</div>
 				</div>
 			);

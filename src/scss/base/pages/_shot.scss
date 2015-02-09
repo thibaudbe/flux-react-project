@@ -24,6 +24,11 @@
 		@include border-radius(4px);
 		@include box-shadow(0, 0, 5px, -1px, rgba(0,0,0,.2));
 		max-width: 400px;
+
+		.shot__image {
+			background: #F7F7F7;
+			display: block;
+		}
 	}
 
 	.img-avatar {

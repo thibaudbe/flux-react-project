@@ -9,8 +9,10 @@
 @import "base/helpers/functions";
 @import "base/helpers/mixins";
 @import "base/helpers/grid";
+@import "base/helpers/animation";
 
 // Components
+@import "base/components/elements";
 @import "base/components/navigation";
 @import "base/components/loading";
 @import "base/components/stats";

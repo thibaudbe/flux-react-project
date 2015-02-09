@@ -9,15 +9,15 @@ var NotFound       = require('../pages/NotFound.jsx');
 var Navbar         = require('../partials/Navbar.jsx');
 var Header         = require('../partials/Header.jsx');
 var Footer         = require('../partials/Footer.jsx');
-var Image          = require('../partials/Image.jsx');
+var ImageLoader    = require('react-imageloader');
 
 var DocumentTitle	 = require('react-document-title');
 var Router         = require('react-router');
 var RouteHandler   = Router.RouteHandler;
 var Link           = Router.Link;
 
-var EventEmitter = require('events').EventEmitter;
-var loadingEvents = new EventEmitter();
+// var EventEmitter = require('events').EventEmitter;
+// var loadingEvents = new EventEmitter();
 
 
 var List = React.createClass({
@@ -35,13 +35,12 @@ var List = React.createClass({
 		}
 	},
 
-	updateViewport: function() {
-		this.setState({
-			viewport: {
-				top: window.pageYOffset,
-				height: window.innerHeight
-			}
-		});
+	updateLoading: function(bool) {
+		console.log('bool', bool);
+		if (bool == true) 
+			this.setState({ loading: true });
+		else
+			this.setState({ loading: false });
 	},
 
 	renderShots: function() {
@@ -53,7 +52,9 @@ var List = React.createClass({
 					<div key={i} className="col-3">
 						<div className="shot">
 							<Link className="shot__link" to="shot" params={{id: shot.id}}>
-								<Image title={shot.title} image={shot.image_url} viewport={self.state.viewport} />
+								<ImageLoader title={shot.title} src={shot.image_url}>
+								  failed
+								</ImageLoader>
 							</Link>
 							<div className="shot__player">
 								<figure className="img-avatar">
@@ -74,6 +75,10 @@ var List = React.createClass({
 	render: function() {
 		var data = this.state.data;
 		var id = this.state.id;
+
+		// GROS PROBLEME DE CALCUL AU SCROLL !!! 
+		// LAZYLOADER POURRI ???
+		// console.log('loading', this.state.loading);
 
 		var loading = data.length === 0 ? <Loading /> : '';
 

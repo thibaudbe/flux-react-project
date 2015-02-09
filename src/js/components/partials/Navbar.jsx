@@ -65,6 +65,7 @@ var Navbar = React.createClass({
 
 module.exports = Navbar;
 
+
 // Menu Move events
 menuEvents.on('moveChange', function(menu){
 	var html = document.querySelector('html');
@@ -79,5 +80,6 @@ menuEvents.on('moveChange', function(menu){
 		html.className += ' '+ classFix +' ';
 		body.className += ' '+ classFix +' ';
 	}
+	
 });
 

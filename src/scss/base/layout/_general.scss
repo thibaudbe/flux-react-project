@@ -8,8 +8,8 @@ html, body {
 		// overflow: hidden;
 
 		.page {
-			// overflow-y: scroll;
-			// -webkit-overflow-scrolling: touch;
+			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
 		}
 	}
 }
@@ -57,54 +57,10 @@ img {
 	text-align: center;
 }
 
+.go-back {
+	cursor: pointer;
 
-// Styles
-.head-page-style {
-	background: $menu;
-	color: #fff;
-	text-transform: capitalize;
-}
-
-.footer-page-style {
-	position: absolute;
-	z-index: 10;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-}
-
-.paper-style {
-	background: #fff;
-	padding: 5px;
-	@include border-radius(4px);
-	@include box-shadow(0, 0, 5px, -1px, rgba(0,0,0,.2));
-	margin-bottom: 20px;
-}
-
-
-// Animation
-.moveDown {
-	@include animation-name(moveDown);
-}
-
-@include keyframes(moveDown) {
-	from {
-		@include transform(translate3d(0, -100%, 0));
-	}
-	to {
-		@include transform(none);
-	}
-}
-
-.moveUp {
-	@include animation-name(moveUp);
-}
-
-@include keyframes(moveUp) {
-	from {
-		@include transform(translate3d(0, 100%, 0));
-	}
-	to {
-		@include transform(none);
+	&:hover {
+		text-decoration: underline;
 	}
 }
