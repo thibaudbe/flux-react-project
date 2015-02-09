@@ -52,7 +52,6 @@ var Navbar = React.createClass({
 							<Link onClick={this.toggleMenu} to="list" params={{id: 'popular'}}>Popular</Link>
 							<Link onClick={this.toggleMenu} to="list" params={{id: 'everyone'}}>Everyone</Link>
 							<Link onClick={this.toggleMenu} to="list" params={{id: 'debuts'}}>Debuts</Link>
-							<a onClick={this.toggleMenu} href="#/error">Error</a>
 						</div>
 					</nav>
 				</div>

@@ -1,29 +1,27 @@
-Flux React Project
+Flux React Project - RRReact
 ===
 
-A sample project (still in progress) for playing with API and isomorphic architecture, connected to the deprecated [Dribbble Beta API](https://dribbble.com/api/deprecated).
+A sample project (still in progress) for playing with API and isomorphic architecture, connected to the deprecated [Dribbble Beta API](https://dribbble.com/api/deprecated). Check the [demo here](http://rrreact.herokuapp.com/).
 
 - Primary pages : Popular, Everyone and Debuts
 - Shots of these pages
 - And their associated Players
 
-Using [Gulp](http://gulpjs.com/) & [Webpack](http://webpack.github.io/docs/) for Development. 
-
 
 ## Features
 
-- Router
+- [Flux](http://facebook.github.io/flux/) architecture
+- [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/docs/) dev environment
+- Sass preprocessor
 - Images LazyLoad
-- UI framework
-- Gulp env 
-- SASS preprocessor
 - 404 page
+- Home made interface using [Bourbon](http://bourbon.io/)
 - Progressbar + loading 
 
 
 ## Installation
 
-Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) installed, then run
+Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) installed (and Ruby to compile Sass), then run
 
 ```
   npm install
@@ -47,6 +45,12 @@ Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) ins
   gulp clean
 ```
 
+### Production mode
+
+```
+  npm start
+```
+
 
 ## Next Features
 
@@ -55,7 +59,6 @@ Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) ins
 - Page transition
 - Pagination
 - Query search
-- 
 
 
 ## Sources
