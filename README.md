@@ -10,6 +10,17 @@ A sample project (still in progress) for playing with API and isomorphic archite
 Using [Gulp](http://gulpjs.com/) & [Webpack](http://webpack.github.io/docs/) for Development. 
 
 
+## Features
+
+- Router
+- Images LazyLoad
+- UI framework
+- Gulp env 
+- SASS preprocessor
+- 404 page
+- Progressbar + loading 
+
+
 ## Installation
 
 Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) installed, then run
@@ -40,13 +51,11 @@ Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) ins
 ## Next Features
 
 - Cookies Storage
-- Back history 
-- UI responsive Framework
 - Breadcrumbs
 - Page transition
-- Demo hosting
-- Lazyload
 - Pagination
+- Query search
+- 
 
 
 ## Sources
