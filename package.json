@@ -48,7 +48,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp --type production"
+    "start": "node server",
+    "postinstall": "gulp --type production"
   },
   "author": "Thibaud B.",
   "license": "ISC"
