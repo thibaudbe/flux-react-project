@@ -1,1 +1,1 @@
-web: gulp --type production
+web: node node_modules/.bin/gulp --type production
