@@ -101,9 +101,7 @@ gulp.task('serve', function() {
 	$.connect.server({
 		root: dist,
 		port: port,
-		livereload: {
-			port: 35729
-		}
+		livereload: isProduction ? false : true
 	});
 });
 
