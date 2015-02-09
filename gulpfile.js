@@ -64,21 +64,29 @@ gulp.task('html', function() {
 		.pipe(isProduction ? gutil.noop() : $.connect.reload());
 });
 
-// Compile SASS and concat styles
-gulp.task('styles', function() {
-	var sassFiles = $.rubySass(src +'scss/main.scss', {
-			style: 'compressed',
-			sourcemap: false, 
-			precision: 2
-		})
-		.on('error', function(err){
-			new gutil.PluginError('style', err, { showStack: true });
-		});
+// Compile SASS
+gulp.task('sass', function() {
+	$.rubySass(src +'scss/main.scss', {
+		// style: 'compressed',
+		sourcemap: false, 
+		precision: 2
+	})
+	.on('error', function(err){
+		new gutil.PluginError('style', err, { showStack: true });
+	})
+	.pipe(gulp.dest(src +'css'))
+	.pipe($.size({ title : 'sass' }))
+	.pipe(isProduction ? gutil.noop() : $.duration('sass'))
+	.pipe(isProduction ? gutil.noop() : $.connect.reload());
+});
 
+// Concat styles
+gulp.task('styles', function() {
 	return es.concat(gulp.src([
-		bower + 'fontawesome/css/font-awesome.css',
-		bower + 'animate-css/animate.css'
-	]), sassFiles)
+			bower + 'fontawesome/css/font-awesome.css',
+			bower + 'animate-css/animate.css',
+			src + 'css/main.css'
+		]))
 		.pipe($.concat('main.min.css'))
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
 		.pipe(isProduction ? $.combineMediaQueries({
@@ -130,7 +138,8 @@ gulp.task('init', function() { 
 // Watch sass, html and js file changes
 gulp.task('watch', function() {
 	gulp.watch(src + 'index.html', ['html']);
-	gulp.watch(src + 'scss/**/**/*.scss', ['styles']);
+	gulp.watch(src + 'scss/**/**/*.scss', ['sass']);
+	gulp.watch(src + 'css/*.css', ['styles']);
 	gulp.watch(src + 'js/**/*.js', ['scripts']);
 	gulp.watch(src + 'js/**/*.jsx', ['scripts']);
 });
@@ -153,7 +162,8 @@ gulp.task('build', ['clean'], function() {
 		'init',
 		'icons',
 		'html',
-		'images', 
+		'images',
+		'sass', 
 		'styles',
 		'scripts'
 	]);
