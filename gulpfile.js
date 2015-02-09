@@ -47,7 +47,7 @@ gulp.task('scripts', function() {
 		.pipe($.webpack(webpackConfig))
 		.pipe($.jshint())
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
-		// .pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
+		.pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
 		.pipe(gulp.dest(dist + 'js/'))
 		.pipe($.size({ title : 'scripts' }))
 		.pipe(isProduction ? gutil.noop() : $.duration('scripts'))
@@ -64,7 +64,7 @@ gulp.task('html', function() {
 		.pipe(isProduction ? gutil.noop() : $.connect.reload());
 });
 
-// Compile styles using Bourbon & Neat
+// Compile SASS and concat styles
 gulp.task('styles', function() {
 	var sassFiles = $.rubySass(src +'scss/main.scss', {
 			style: 'compressed',
@@ -85,7 +85,7 @@ gulp.task('styles', function() {
 			log: true
 		}) : gutil.noop())
 		.pipe(isProduction ? $.cssmin() : gutil.noop())
-		// .pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
+		.pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
 		.pipe(gulp.dest(dist +'css'))
 		.pipe($.size({ title : 'styles' }))
 		.pipe(isProduction ? gutil.noop() : $.duration('styles'))
