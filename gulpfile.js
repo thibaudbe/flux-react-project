@@ -54,6 +54,22 @@ gulp.task('scripts', function() {
 		.pipe(isProduction ? gutil.noop() : $.connect.reload());
 });
 
+// ie scripts bundle
+gulp.task('ie-scripts', function() {
+	return gulp.src([
+			bower + 'html5shiv/dist/html5shiv.min.js',
+			bower + 'es5-shim/es5-shim.min.js',
+			bower + 'es5-shim/es5-sham.min.js',
+			// bower + 'console-polyfill/index.js',
+		])
+		.pipe($.concat('ie-bundle.js'))
+		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
+		.pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
+		.pipe(gulp.dest(dist + 'js/'))
+		.pipe($.size({ title : 'ie scripts' }))
+		.pipe(isProduction ? gutil.noop() : $.duration('ie scripts'));
+});
+
 // Copy html from src to dist + minify
 gulp.task('html', function() {
 	return gulp.src(src + 'index.html')
@@ -165,6 +181,7 @@ gulp.task('build', ['clean'], function() {
 		'images',
 		'sass', 
 		'styles',
+		'ie-scripts',
 		'scripts'
 	]);
 });

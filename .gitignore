@@ -68,3 +68,5 @@ dist/
 .sass-cache
 *.css.map
 
+### Ressources ###
+ressources
