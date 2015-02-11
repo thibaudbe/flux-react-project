@@ -69,3 +69,5 @@ Be sure you have [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/) ins
 - [Flux, qu'est-ce que c'est ?](http://putaindecode.fr/posts/js/flux-qu-est-ce-c-est/)
 - [Why you might not need MVC with Reactjs](http://www.code-experience.com/why-you-might-not-need-mvc-with-reactjs/)
 - [Async requests with Reactjs and Flux revisited](http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)
+
+[![Analytics](https://ga-beacon.appspot.com/UA-59640055-1/flux-react-project/readme)](https://github.com/igrigorik/ga-beacon)
