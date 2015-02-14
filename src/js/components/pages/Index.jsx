@@ -18,14 +18,29 @@ var Index = React.createClass({
 			<DocumentTitle title="RRReact">
 				<div className="page home-page">
 					<ul className="home__title">
-						<li><Link to="list" params={{id: 'popular'}}>
-							<span className="animated zoomIn">Popular</span></Link>
+						<li>
+							<Link to="list" params={{id: 'popular'}}>
+								<span className="animated zoomIn">
+									<span className="title">Popular</span>
+									<span className="desc">Popular shots</span>
+								</span>
+							</Link>
 						</li>
-						<li><Link to="list" params={{id: 'everyone'}}>
-							<span className="animated zoomIn">Everyone</span></Link>
+						<li>
+							<Link to="list" params={{id: 'everyone'}}>
+								<span className="animated zoomIn">
+									<span className="title">Everyone</span>
+									<span className="desc">Last shots</span>
+								</span>
+							</Link>
 						</li>
-						<li><Link to="list" params={{id: 'debuts'}}>
-							<span className="animated zoomIn">Debuts</span></Link>
+						<li>
+							<Link to="list" params={{id: 'debuts'}}>
+								<span className="animated zoomIn">
+									<span className="title">Debuts</span>
+									<span className="desc">First shots</span>
+								</span>
+							</Link>
 						</li>
 					</ul>
 				</div>

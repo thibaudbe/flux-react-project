@@ -30,7 +30,7 @@ var App = React.createClass({
 				logo: true,
 			},
 			everyone: {
-				title: 'All last shots',
+				title: 'Last shots',
 				logo: false,
 			},
 			debuts: {
@@ -38,7 +38,7 @@ var App = React.createClass({
 				logo: false,
 			},
 			popular: {
-				title: 'The most popular shots',
+				title: 'Popular shots',
 				logo: false,
 			},
 			shot: {
