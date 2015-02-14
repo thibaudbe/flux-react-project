@@ -17,7 +17,7 @@ var Index = React.createClass({
 		return (
 			<DocumentTitle title="RRReact">
 				<div className="page home-page">
-					<ul className="home__title">
+					<ul className="home__title container">
 						<li>
 							<Link to="list" params={{id: 'popular'}}>
 								<span className="animated zoomIn">

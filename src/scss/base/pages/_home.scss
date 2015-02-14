@@ -10,20 +10,27 @@
 	.home__title {
 		display: table;
 		height: 100%;
-		height: calc(100% - 60px);
+		height: calc(100% - 100px);
 	  width: 100%;
+    padding-top: 70px;
+
+		@media screen and (max-width: $mobile) {
+		  padding: 120px 0 50px;
+		}
 
 		li {
 			width: 33.33%;
 		  height: 100%;
+			text-align: center;
 
-			@media screen and (max-width: 480px) {
+			@media screen and (max-width: $mobile) {
 				width: 100%;
 				height: 33.33%;
+			}			
+			@media screen and (min-width: $mobile) {
+				vertical-align: middle;
+				display: table-cell;
 			}
-			text-align: center;
-			vertical-align: middle;
-			display: table-cell;
 
 			a {
 				color: #242424;
@@ -35,7 +42,7 @@
 					height: 5px;
 					background: $menu;
 					position: absolute;
-				  bottom: -80px;
+				  bottom: -36px;
 				  opacity: 0;
 				  @include transition(opacity 0.2s);
 				  @include border-top-radius(50%);
@@ -48,13 +55,27 @@
 					font-size: 1.2em;
 					font-weight: bold;
 					text-transform: uppercase;
-					margin-bottom: .4em;
+					@include transition(transform 0.2s);
+
+					@media screen and (max-width: $mobile) {
+					  margin-top: .6em;
+					}
+					@media screen and (min-width: $mobile) {
+						margin-bottom: .4em;	
+					}
 				}
 
 				.desc {
 					font-style: italic;
 					font-size: .9em;
-					color: #999;
+					@include transition(transform 0.2s);
+
+					@media screen and (max-width: $mobile) {
+						color: #999;
+					}
+					@media screen and (min-width: $mobile) {
+						color: #999;
+					}
 				}
 
 				span {
@@ -66,6 +87,14 @@
 						&::before {
 							opacity: 1;
 						}
+
+						.title {
+							@include transform(translateY(-10px));
+						}
+						.desc {
+							@include transform(translateY(10px));
+						}
+
 					}
 				}
 				
